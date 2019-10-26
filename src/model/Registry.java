@@ -10,23 +10,48 @@ import java.util.ArrayList;
  *
  */
 public class Registry {
+
+////////RELATIONS//////////
 	
 	/**
 	 * 
 	 */
 	private ArrayList<Period> periods;
+	/**
+	 * 
+	 */
+	private ArrayList<Period> ordersNotBilled;
+	
+////////ATRUBUTES//////////
 	
 	/**
 	 * 
 	 */
 	private double cifRate;
 	
+////////CONSTRUCTOR//////////
+
 	/**
-	 * 
+	 * crea la lista de periodos y crea los 12 periodos
 	 */
 	public Registry() {
-		// TODO Auto-generated constructor stub
+		periods = new ArrayList<Period>(12);
+		periods.add(new Period("Enero"));
+		periods.add(new Period("Febrero"));
+		periods.add(new Period("Marzo"));
+		periods.add(new Period("Abril"));
+		periods.add(new Period("Mayo"));
+		periods.add(new Period("Junio"));
+		periods.add(new Period("Julio"));
+		periods.add(new Period("Agosto"));
+		periods.add(new Period("Septiembre"));
+		periods.add(new Period("Octubre"));
+		periods.add(new Period("Noviembre"));
+		periods.add(new Period("Diciembre"));
 	}
+	
+
+/////////////////GET and SET/////////////////////////////
 	
 	/**
 	 * 
@@ -34,11 +59,12 @@ public class Registry {
 	public ArrayList<Period> getPeriods() {
 		return periods;
 	}
+	
 	/**
 	 * 
 	 */
-	public void setPeriods(ArrayList<Period> periods) {
-		this.periods = periods;
+	public ArrayList<Period> getOrdersNotBilled() {
+		return ordersNotBilled;
 	}
 	
 	/**
@@ -53,5 +79,8 @@ public class Registry {
 	public void setCifRate(double cifRate) {
 		this.cifRate = cifRate;
 	}
+	
+	
+	
 	
 }

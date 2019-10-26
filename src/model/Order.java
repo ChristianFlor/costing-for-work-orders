@@ -8,6 +8,8 @@ package model;
  *
  */
 public class Order {
+
+////////RELATIONS//////////
 	
 	/**
 	 * 
@@ -17,6 +19,8 @@ public class Order {
 	 * 
 	 */
 	private Date finish;
+	
+////////ATRUBUTES//////////
 	
 	/**
 	 * 
@@ -44,12 +48,17 @@ public class Order {
 	 */
 	private boolean billed;
 	
+	
+////////CONSTRUCTOR//////////
+	
 	/**
 	 * 
 	 */
 	public Order() {
 		// TODO Auto-generated constructor stub
 	}
+	
+/////////////////GET and SET/////////////////////////////
 	
 	/**
 	 * 

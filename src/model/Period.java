@@ -11,6 +11,7 @@ import java.util.ArrayList;
  */
 public class Period {
 	
+////////RELATIONS//////////
 	
 	/**
 	 * 
@@ -25,6 +26,8 @@ public class Period {
 	 * 
 	 */
 	private Date finish;
+	
+////////ATRUBUTES//////////
 	
 	/**
 	 * 
@@ -47,12 +50,26 @@ public class Period {
 	 */
 	private double CIFAplicated;
 	
+////////CONSTRUCTOR//////////
+	
 	/**
 	 * 
 	 */
-	public Period() {
-		
+	public Period(String periodName) {
+		this.periodName = periodName;
 	}
+	
+/////////////METHOD////////////
+	
+	/**
+	 * 
+	 */
+	public boolean changeBilledStatus(String id){
+		return true;
+	}
+	
+	
+/////////////////GET and SET/////////////////////////////
 	
 	/**
 	 * 
@@ -99,20 +116,17 @@ public class Period {
 	public String getPeriodName() {
 		return periodName;
 	}
+	
 	/**
 	 * 
 	 */
-	public void setPeriodName(String periodName) {
-		this.periodName = periodName;
-	}
-	
 	public double getMDTotal() {
 		return MDTotal;
 	}
 	/**
 	 * 
 	 */
-	public void setMDTotal(double mDTotal) {
+	public void MDTotal(double mDTotal) {
 		MDTotal = mDTotal;
 	}
 	
@@ -149,11 +163,13 @@ public class Period {
 		return CIFAplicated;
 	}
 	/**
-	 * 
+	 * @param cifAplicated
 	 */
 	public void setCIFAplicated(double cIFAplicated) {
 		CIFAplicated = cIFAplicated;
 	}
+	
+	
 	
 	
 }

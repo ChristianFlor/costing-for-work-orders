@@ -8,6 +8,8 @@ package model;
  *
  */
 public class Date {
+
+////////ATRUBUTES//////////
 	
 	/**
 	 * 
@@ -21,6 +23,8 @@ public class Date {
 	 * 
 	 */
 	private int year;
+
+////////CONSTRUCTOR//////////
 	
 	/**
 	 * 
@@ -30,6 +34,9 @@ public class Date {
 		this.month = month;
 		this.year = year;
 	}
+	
+	
+/////////////////GET and SET/////////////////////////////
 	
 	/**
 	 * 
