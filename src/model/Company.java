@@ -9,6 +9,8 @@ package model;
  */
 public class Company {
 	
+////////CONTANTS//////////
+	
 	/**
 	 * 
 	 */
@@ -17,10 +19,16 @@ public class Company {
 	 * 
 	 */
 	public final static String HOURS = "horas";
+
+////////RELATIONS//////////
+	
 	/**
 	 * 
 	 */
 	public Registry registry;
+	
+////////ATRUBUTES//////////
+	
 	/**
 	 * 
 	 */
@@ -41,6 +49,8 @@ public class Company {
 	 * 
 	 */
 	private double budgtedCif;
+
+////////CONSTRUCTOR//////////
 	
 	/**
 	 * 
@@ -48,6 +58,9 @@ public class Company {
 	public Company() {
 		
 	}
+	
+	
+/////////////////GET and SET/////////////////////////////
 	
 	/**
 	 * 
