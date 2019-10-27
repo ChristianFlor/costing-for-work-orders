@@ -12,22 +12,24 @@ public class Date {
 ////////ATRUBUTES//////////
 	
 	/**
-	 * 
+	 * representa el dia de la fecha
 	 */
 	private int day;
 	/**
-	 * 
+	 * representa el mes de la fecha
 	 */
 	private int month;
 	/**
-	 * 
+	 * representa el año de la fecha
 	 */
 	private int year;
 
 ////////CONSTRUCTOR//////////
 	
 	/**
+	 * permite crear un objeto de tipo fecha
 	 * 
+	 * params
 	 */
 	public Date(int day, int month, int year) {
 		this.day = day;
@@ -39,42 +41,25 @@ public class Date {
 /////////////////GET and SET/////////////////////////////
 	
 	/**
-	 * 
+	 * retorna el dia de la fecha
 	 */
 	public int getDay() {
 		return day;
 	}
+
 	/**
-	 * 
-	 */
-	public void setDay(int day) {
-		this.day = day;
-	}
-	
-	/**
-	 * 
+	 * retorna el mes de la fecha
 	 */
 	public int getMonth() {
 		return month;
 	}
-	/**
-	 * 
-	 */
-	public void setMonth(int month) {
-		this.month = month;
-	}
 	
 	/**
+	 * retonra el año de la fecha
 	 * 
 	 */
 	public int getYear() {
 		return year;
-	}
-	/**
-	 * 
-	 */
-	public void setYear(int year) {
-		this.year = year;
 	}
 	
 	
