@@ -1,38 +1,40 @@
-/**
- * 
+/**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Icesi University (Cali - Colombia)
+ * @author Natalia Isabel Gonzalez Murillo <natalia.gonzalez3@correo.icesi.edu.co>
+ * @author Christian David Flor Astudillo <christian.flor1@correo.icesi.edu.co>
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 package model;
 
 import java.util.ArrayList;
 
 /**
- * @author 
- *
+ * This class represents the company order record
  */
 public class Registry {
 
 ////////RELATIONS//////////
 	
 	/**
-	 * 
+	 * It is a list that contains the registry for periods
 	 */
 	private ArrayList<Period> periods;
 	/**
-	 * 
+	 * It is a list that contains the registry of orders not billed
 	 */
 	private ArrayList<Order> ordersNotBilled;
 	
 ////////ATRUBUTES//////////
 	
 	/**
-	 * 
+	 * Represents the CIF rate
 	 */
 	private double cifRate;
 	
 ////////CONSTRUCTOR//////////
 
 	/**
-	 * crea la lista de periodos y crea los 12 periodos
+	 * Create 12 periods whit month names in Spanish and add to list periods
 	 */
 	public Registry() {
 		periods = new ArrayList<Period>(12);
@@ -53,7 +55,7 @@ public class Registry {
 /////////////METHOD////////////
 	
 	/**
-	 * registra una orden como facturada en el periodo en que se ha finalizado la orden
+	 * Register a order billed in order completion period
 	 */
 	public boolean changeBilledStatus(String id, int dayF, int monthF, int yearF){
 		int orderI = searchOrder(id);
@@ -68,13 +70,32 @@ public class Registry {
 	}
 	
 	/**
-	 * busca una orden en la lista de ordene que aun no han sido facturadas por el id
-	 *  id, es el codigo de la ordne buscada
-	 *  si no la encuentra retorna -1
-	 *  retorna la posicion en la lista donde se encuntra la orden
+	 * Search a order in ordersNotBilled
+	 * @param id is the code of the order sought
+	 * @return an int represents the position of order sought in the ordersNotBilled, if it does not find returns -1
 	 */
 	private int searchOrder(String id) {
-		return 0;
+		int i = -1;
+		int l = ordersNotBilled.size()-1;
+		int s = 0;
+		int m = (s+l)/2;
+		while(s<l) {
+			if(ordersNotBilled.get(m).getId().compareTo(id) == 0) {
+				s = m;
+				l = s;
+			}else if(ordersNotBilled.get(m).getId().compareTo(id) > 0) {
+				l = m-1;
+				m = (s+l)/2;
+			}else{
+				s = m;
+				m = (s+l)/2;
+			}
+		}
+		if(s==l && ordersNotBilled.equals(id)) {
+			i = s;
+		}
+		
+		return i;
 	}
 	
 	/**
@@ -99,7 +120,28 @@ public class Registry {
 	 * 
 	 */
 	private void addOrderBilled(Order newOrder, int period) {
-		periods.get(period).getOrders().add(newOrder);
+		String id = newOrder.getId();
+		boolean added = false;
+		int l = periods.get(period).getOrders().size()-1;
+		ArrayList<Order> orders = periods.get(period).getOrders();
+		int s = 0;
+		int m = (s+l)/2;
+		while(!added) {
+			if(s == l) {
+				if(orders.get(s).getId().compareTo(id) > 0) {
+					orders.add(s, newOrder);
+				}else {
+					orders.add(s+1, newOrder);
+				}
+				added = true;
+			}else if(orders.get(m).getId().compareTo(id) > 0) {
+				l = m-1;
+				m = (s+l)/2;
+			}else{
+				s = m;
+				m = (s+l)/2;
+			}
+		}
 	}
 	
 	/**
@@ -108,33 +150,54 @@ public class Registry {
 	 * 
 	 */
 	private void addOrderNotBilled(Order newOrder) {
-		ordersNotBilled.add(newOrder);
+		String id = newOrder.getId();
+		boolean added = false;
+		int l = ordersNotBilled.size()-1;
+		int s = 0;
+		int m = (s+l)/2;
+		while(!added) {
+			if(s == l) {
+				if(ordersNotBilled.get(s).getId().compareTo(id) > 0) {
+					ordersNotBilled.add(s, newOrder);
+				}else {
+					ordersNotBilled.add(s+1, newOrder);
+				}
+				added = true;
+			}else if(ordersNotBilled.get(m).getId().compareTo(id) > 0) {
+				l = m-1;
+				m = (s+l)/2;
+			}else{
+				s = m;
+				m = (s+l)/2;
+			}
+		}
 	}
 
 /////////////////GET and SET/////////////////////////////
 	
 	/**
-	 * 
+	 * @return the periods list
 	 */
 	public ArrayList<Period> getPeriods() {
 		return periods;
 	}
 	
 	/**
-	 * 
+	 * @return the ordersNotBilled list
 	 */
 	public ArrayList<Order> getOrdersNotBilled() {
 		return ordersNotBilled;
 	}
 	
 	/**
-	 * 
+	 * @return the CIF rate
 	 */
 	public double getCifRate() {
 		return cifRate;
 	}
 	/**
-	 * 
+	 * Change the CIF rate
+	 * @param cifRate is the new CIF rate
 	 */
 	public void setCifRate(double cifRate) {
 		this.cifRate = cifRate;

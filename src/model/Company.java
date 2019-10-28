@@ -1,60 +1,61 @@
-/**
- *  
+/**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Icesi University (Cali - Colombia)
+ * @author Natalia Isabel Gonzalez Murillo <natalia.gonzalez3@correo.icesi.edu.co>
+ * @author Christian David Flor Astudillo <christian.flor1@correo.icesi.edu.co>
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 package model;
 
 /**
- * @author Natalia Isabel Gonzalez Murillo
- * @author Christian David Flor
- *
+ * This class represents a company
  */
 public class Company {
 	
 ////////CONTANTS//////////
 	
 	/**
-	 * una contante para defnir los terminos de la base, si esta defenida por dinero
+	 * It is a constant for define the base term (if it is defined for money)
 	 */
 	public final static String MONEY = "$";
 	/**
-	 * una contante para defnir los terminos de la base, si esta definida en horas
+	 * It is a constant for define the base term (if it is defined for hours)
 	 */
 	public final static String HOURS = "horas";
 
 ////////RELATIONS//////////
 	
 	/**
-	 * una relacion que representa el registro de las ordenes de la empresa
+	 * It is a relation that represents the company's registry
 	 */
 	public Registry registry;
 	
 ////////ATRUBUTES//////////
 	
 	/**
-	 * representa el nombre de la compañia
+	 * Is the company's names
 	 */
 	private String name;
 	/**
-	 * es la descripcion acerca del enfoque de la empresa
+	 * Is the description about the company's approach
 	 */
 	private String description;
 	/**
-	 * representa el valor de la base
+	 * Is the base value
 	 */
 	private double base;
 	/**
-	 * representa el tipo de base (dinero u horas)
+	 * Is the base type (money or hours)
 	 */
 	private String baseType;
 	/**
-	 * representa el cif presupuestado
+	 * Is the budget CIF
 	 */
 	private double budgtedCif;
 
 ////////CONSTRUCTOR//////////
 	
 	/**
-	 * permite crear un objeto de tipo Company
+	 * Create an object of Company type
 	 */
 	public Company() {
 		

@@ -1,5 +1,8 @@
-/**
- * 
+/**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Icesi University (Cali - Colombia)
+ * @author Natalia Isabel Gonzalez Murillo <natalia.gonzalez3@correo.icesi.edu.co>
+ * @author Christian David Flor Astudillo <christian.flor1@correo.icesi.edu.co>
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 package model;
 
@@ -7,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * @author 
+ * This class represents a period of registry
  *
  */
 public class Period {
@@ -15,7 +18,7 @@ public class Period {
 ////////RELATIONS//////////
 	
 	/**
-	 * es una lista que contiene todas la ordenes facturadas del periodo
+	 * Is a list that contains all orders billed in this period
 	 */
 	private ArrayList<Order> orders;
 	
@@ -23,8 +26,7 @@ public class Period {
 ////////ATRUBUTES//////////
 	
 	/**
-	 * es el nombre del periodo, 
-	 * representa el periodo de registro
+	 * Is the name of period and represents registration period
 	 */
 	private String periodName;
 	/**
