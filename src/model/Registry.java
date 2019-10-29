@@ -74,7 +74,7 @@ public class Registry {
 	 * @param id is the code of the order sought
 	 * @return an int represents the position of order sought in the ordersNotBilled, if it does not find returns -1
 	 */
-	private int searchOrder(String id) {
+	public int searchOrder(String id) {
 		int i = -1;
 		int l = ordersNotBilled.size()-1;
 		int s = 0;
@@ -119,7 +119,7 @@ public class Registry {
 	 * en orden
 	 * 
 	 */
-	private void addOrderBilled(Order newOrder, int period) {
+	public void addOrderBilled(Order newOrder, int period) {
 		String id = newOrder.getId();
 		boolean added = false;
 		int l = periods.get(period).getOrders().size()-1;
@@ -149,7 +149,7 @@ public class Registry {
 	 * en orden
 	 * 
 	 */
-	private void addOrderNotBilled(Order newOrder) {
+	public void addOrderNotBilled(Order newOrder) {
 		String id = newOrder.getId();
 		boolean added = false;
 		int l = ordersNotBilled.size()-1;

@@ -1,6 +1,8 @@
 package ui;
 
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.Date;
 
 import javafx.collections.FXCollections;
@@ -42,9 +44,6 @@ public class MainController {
 
     @FXML
     private ComboBox<String> isBilled;
-
-    @FXML
-    private Button createOrder;
 
     @FXML
     private TextField nameCompany;
@@ -106,6 +105,29 @@ public class MainController {
 		Alert a = new Alert(AlertType.INFORMATION);
 		a.setContentText("Cree la nueva compañia");
 		a.show();
+    }
+    @FXML
+    void createOrder(ActionEvent event) {
+    	
+    	LocalDate periodInit= fechainicio.getValue();
+    	Month pS = periodInit.getMonth();
+    	int monthS= pS.getValue();
+    	int dayS= periodInit.getDayOfMonth();
+    	int yearS = periodInit.getYear();
+    	
+    	boolean bill= isBilled.getValue().equals("SI")? isBilled.getValue().equals("NO"): true;
+    	
+    	LocalDate periodFinal= fechaFin.getValue();
+    	Month pF = periodFinal.getMonth();
+    	int monthF= pS.getValue();
+    	int dayF= periodFinal.getDayOfMonth();
+    	int yearF = periodFinal.getYear();
+    	
+    	program.getRegistry().addNewOrder(idOrder.getText(), Double.parseDouble(MDOrder.getText()), Double.parseDouble(MODOrder.getText()),Double.parseDouble(CIFOrder.getText()),dayS, monthS,yearS,bill, dayF, monthF,yearF);
+    	Alert a = new Alert(AlertType.INFORMATION);
+		a.setContentText("La orden"+idOrder.getText()+", ha sido añadida correctamente");
+		a.show();
+    	
     }
     @FXML
     void searchOrder(ActionEvent event) {
@@ -179,18 +201,15 @@ public class MainController {
     	data = FXCollections.observableArrayList();
     	
     	for (int i = 0; i < program.getRegistry().getPeriods().size(); i++) {
-			//data.add(program.getRegistry().getPeriods())[i]);
+			data.addAll(program.getRegistry().getPeriods().get(i).getOrders());
 		}
 		
     	return data;
     }
     private ObservableList<Order> createDataNOBilled(){
     	data = FXCollections.observableArrayList();
-    	/*
-    	for (int i = 0; i < s.getFlights().length; i++) {
-			data.add(s.getFlights()[i]);
-		}
-		*/
+    	data.addAll(program.getRegistry().getOrdersNotBilled());
+    	
     	return data;
     }
    

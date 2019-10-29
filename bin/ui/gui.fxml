@@ -132,12 +132,12 @@
                                                             <Font size="5.0" />
                                                          </font>
                                                       </TextField>
+                                                      <DatePicker fx:id="fechainicio" prefHeight="38.0" prefWidth="164.0" style="-fx-background-color: white; -fx-text-fill: black;" styleClass="context-menu" GridPane.columnIndex="5" GridPane.rowIndex="2" />
                                                       <Label text="Fecha Inicio::" GridPane.columnIndex="4" GridPane.rowIndex="2">
                                                          <font>
                                                             <Font name="Verdana" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <DatePicker fx:id="fechainicio" prefHeight="38.0" prefWidth="164.0" style="-fx-background-color: white;" styleClass="context-menu" GridPane.columnIndex="5" GridPane.rowIndex="2" />
                                                    </children>
                                                 </GridPane>
                                              </children>
@@ -165,12 +165,12 @@
                                                          </font>
                                                       </Label>
                                                       <ComboBox fx:id="isBilled" prefHeight="39.0" prefWidth="159.0" promptText="Es Facturado:" style="-fx-background-color: white;" styleClass="context-menu" />
-                                                      <DatePicker fx:id="fechaFin" style="-fx-background-color: white;" styleClass="context-menu" GridPane.columnIndex="4" />
+                                                      <DatePicker fx:id="fechaFin" style="-fx-background-color: white; -fx-text-fill: black;" styleClass="context-menu" GridPane.columnIndex="4" />
                                                    </children>
                                                 </GridPane>
                                              </children>
                                           </HBox>
-                                          <Button fx:id="createOrder" mnemonicParsing="false" text="Crear Orden">
+                                          <Button mnemonicParsing="false" onAction="#createOrder" text="Crear Orden">
                                              <font>
                                                 <Font size="14.0" />
                                              </font></Button>

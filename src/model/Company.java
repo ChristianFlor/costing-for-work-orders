@@ -59,7 +59,7 @@ public class Company {
 	 */
 	public Company( String name, String description, String baseType, double base , double budgtedCif) {
 		super();
-		this.registry = registry;
+		registry = new Registry();
 		this.name = name;
 		this.description = description;
 		this.base = base;
@@ -70,7 +70,7 @@ public class Company {
 	
 /////////////////GET and SET/////////////////////////////
 	
-	
+
 
 
 	/**
