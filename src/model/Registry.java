@@ -152,7 +152,7 @@ public class Registry {
 	public void addOrderNotBilled(Order newOrder) {
 		String id = newOrder.getId();
 		boolean added = false;
-		int l = ordersNotBilled.size()-1;
+		int l = ordersNotBilled.size();
 		int s = 0;
 		int m = (s+l)/2;
 		while(!added) {

@@ -119,7 +119,7 @@ public class MainController {
     	
     	LocalDate periodFinal= fechaFin.getValue();
     	Month pF = periodFinal.getMonth();
-    	int monthF= pS.getValue();
+    	int monthF= pF.getValue();
     	int dayF= periodFinal.getDayOfMonth();
     	int yearF = periodFinal.getYear();
     	

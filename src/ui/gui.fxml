@@ -276,12 +276,56 @@
                                     <Separator prefHeight="17.0" prefWidth="364.0" visible="false" />
                                     <VBox alignment="CENTER" fillWidth="false" prefHeight="565.0" prefWidth="647.0" spacing="10.0" style="-fx-border-color: #4285F4; -fx-border-width: 2; -fx-border-radius: 15;">
                                        <children>
-                                          <Label text="Lista ordenes facturadas">
+                                          <Label text="Lista ordenes terminadas">
                                              <font>
                                                 <Font name="Verdana Bold" size="24.0" />
                                              </font>
                                           </Label>
                                           <HBox fx:id="tableBilled" alignment="CENTER" focusTraversable="true" prefHeight="506.0" prefWidth="643.0" spacing="8.0">
+                                             <padding>
+                                                <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                                             </padding>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <Separator prefHeight="17.0" prefWidth="364.0" visible="false" />
+                                    <VBox alignment="CENTER" prefHeight="125.0" prefWidth="667.0" style="-fx-border-color: #4285F4; -fx-border-width: 2; -fx-border-radius: 15;">
+                                       <children>
+                                          <Label text="Facturar">
+                                             <font>
+                                                <Font name="Verdana Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox alignment="CENTER" prefHeight="31.0" prefWidth="348.0" spacing="8.0">
+                                             <children>
+                                                <Label text="ID">
+                                                   <font>
+                                                      <Font name="Consolas" size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="idBilled1" prefHeight="37.0" prefWidth="159.0" style="-fx-background-color: white; -fx-text-fill: black;" styleClass="context-menu" />
+                                                <ImageView fitHeight="33.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../uiImg/icons/busqueda.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <Button mnemonicParsing="false" onAction="#searchOrder" prefHeight="39.0" prefWidth="92.0" text="OK" />
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                                             </padding>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <Separator prefHeight="34.0" prefWidth="429.0" visible="false" />
+                                    <VBox alignment="CENTER" fillWidth="false" prefHeight="565.0" prefWidth="647.0" spacing="10.0" style="-fx-border-color: #4285F4; -fx-border-width: 2; -fx-border-radius: 15;">
+                                       <children>
+                                          <Label text="Lista ordenes facturadas">
+                                             <font>
+                                                <Font name="Verdana Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox fx:id="tableBilled1" alignment="CENTER" focusTraversable="true" prefHeight="506.0" prefWidth="643.0" spacing="8.0">
                                              <padding>
                                                 <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                              </padding>
@@ -297,7 +341,7 @@
                                     <Separator prefHeight="14.0" prefWidth="392.0" visible="false" />
                                     <VBox alignment="CENTER" prefHeight="433.0" prefWidth="668.0" style="-fx-border-color: #4285F4; -fx-border-width: 2; -fx-border-radius: 15;">
                                        <children>
-                                          <Label contentDisplay="CENTER" prefHeight="30.0" prefWidth="381.0" text="Lista ordenes no facturadas">
+                                          <Label contentDisplay="CENTER" prefHeight="30.0" prefWidth="338.0" text="Lista ordenes en proceso">
                                              <font>
                                                 <Font name="Verdana Bold" size="24.0" />
                                              </font>
@@ -311,7 +355,7 @@
                                     </VBox>
                                     <VBox alignment="CENTER" prefHeight="125.0" prefWidth="667.0" style="-fx-border-color: #4285F4; -fx-border-width: 2; -fx-border-radius: 15;">
                                        <children>
-                                          <Label text="Facturar">
+                                          <Label text="Terminar orden">
                                              <font>
                                                 <Font name="Verdana Bold" size="24.0" />
                                              </font>
