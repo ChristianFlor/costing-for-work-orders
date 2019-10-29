@@ -57,13 +57,22 @@ public class Company {
 	/**
 	 * Create an object of Company type
 	 */
-	public Company() {
-		
+	public Company( String name, String description, String baseType, double base , double budgtedCif) {
+		super();
+		this.registry = registry;
+		this.name = name;
+		this.description = description;
+		this.base = base;
+		this.baseType = baseType;
+		this.budgtedCif = budgtedCif;
 	}
 	
 	
 /////////////////GET and SET/////////////////////////////
 	
+	
+
+
 	/**
 	 * @return the company's registry
 	 */

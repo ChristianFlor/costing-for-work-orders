@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -14,6 +15,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -22,8 +24,6 @@ import model.Order;
 
 public class MainController {
 
-    @FXML
-    private ImageView foundCompImg;
 
     @FXML
     private TextField idOrder;
@@ -42,8 +42,6 @@ public class MainController {
 
     @FXML
     private ComboBox<String> isBilled;
-
-
 
     @FXML
     private Button createOrder;
@@ -84,9 +82,31 @@ public class MainController {
 
     @FXML
     void createCompany(ActionEvent event) {
-    	
+    	try {
+    	program = new Company(nameCompany.getText(), descripcion.getText(), typeBase.getValue(),Double.parseDouble(valueBase.getText()),Double.parseDouble(cifPresupuestado.getText()));
+    	Alert a = new Alert(AlertType.INFORMATION);
+		a.setContentText("La compañia"+nameCompany.getText()+", ha sido creada correctamente");
+		a.show();
+		nameCompany.setEditable(false);
+		descripcion.setEditable(false);
+		valueBase.setEditable(false);
+		cifPresupuestado.setEditable(false);
+    	}catch(Exception e) {
+    		Alert a = new Alert(AlertType.INFORMATION);
+    		a.setContentText("Digite los valores validos");
+    		a.show();
+    	}
     }
-
+    @FXML
+    void clean(ActionEvent event) {
+    	nameCompany.setEditable(true); nameCompany.setText("");
+		descripcion.setEditable(true); descripcion.setText("");
+		valueBase.setEditable(true); valueBase.setText("");
+		cifPresupuestado.setEditable(true); cifPresupuestado.setText("");
+		Alert a = new Alert(AlertType.INFORMATION);
+		a.setContentText("Cree la nueva compañia");
+		a.show();
+    }
     @FXML
     void searchOrder(ActionEvent event) {
 
@@ -159,7 +179,7 @@ public class MainController {
     	data = FXCollections.observableArrayList();
     	
     	for (int i = 0; i < program.getRegistry().getPeriods().size(); i++) {
-			data.add(program.getRegistry().getPeriods().)[i]);
+			//data.add(program.getRegistry().getPeriods())[i]);
 		}
 		
     	return data;
