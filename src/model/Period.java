@@ -55,6 +55,7 @@ public class Period {
 	 */
 	public Period(String periodName) {
 		this.periodName = periodName;
+		orders= new ArrayList<Order>();
 	}
 	
 /////////////METHOD////////////

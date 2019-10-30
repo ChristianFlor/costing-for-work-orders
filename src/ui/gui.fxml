@@ -5,13 +5,19 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -25,23 +31,43 @@
    <children>
       <BorderPane>
          <top>
-            <HBox alignment="CENTER" prefHeight="65.0" prefWidth="779.0" style="-fx-background-color: #4285F4;" BorderPane.alignment="CENTER">
+            <VBox BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="85.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../uiImg/icons/Monitoreo-y-Control.png" />
-                     </image>
-                  </ImageView>
-                  <Label text="Costeo por ordenes de trabajo" textFill="WHITE">
-                     <font>
-                        <Font name="Verdana" size="50.0" />
-                     </font>
-                  </Label>
+                  <MenuBar styleClass="context-menu">
+                    <menus>
+                      <Menu mnemonicParsing="false" text="File">
+                        <items>
+                          <MenuItem mnemonicParsing="false" onAction="#save" text="Save" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <MenuItem mnemonicParsing="false" onAction="#exit" text="Exit" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="View">
+                        <items>
+                          <MenuItem mnemonicParsing="false" onAction="#aboutProgram" text="About" />
+                        </items>
+                      </Menu>
+                    </menus>
+                  </MenuBar>
+                  <HBox alignment="CENTER" prefHeight="65.0" prefWidth="779.0" style="-fx-background-color: #4285F4;">
+                     <children>
+                        <ImageView fitHeight="85.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../uiImg/icons/Monitoreo-y-Control.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Costeo por ordenes de trabajo" textFill="WHITE">
+                           <font>
+                              <Font name="Verdana" size="50.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
+            </VBox>
          </top>
          <center>
-            <TabPane prefHeight="384.0" prefWidth="779.0" stylesheets="@../CSS/dark-theme.css" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+            <TabPane prefHeight="384.0" prefWidth="779.0" styleClass="jfx-hamburger-icon" stylesheets="@../CSS/dark-theme.css" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
               <tabs>
                   <Tab text="DATA">
                      <content>
@@ -164,7 +190,7 @@
                                                             <Font name="Verdana" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <ComboBox fx:id="isBilled" prefHeight="39.0" prefWidth="159.0" promptText="Es Facturado:" style="-fx-background-color: white;" styleClass="context-menu" />
+                                                      <ComboBox fx:id="isFinished" prefHeight="39.0" prefWidth="159.0" promptText="Orden terminada:" style="-fx-background-color: white;" styleClass="context-menu" />
                                                       <DatePicker fx:id="fechaFin" style="-fx-background-color: white; -fx-text-fill: black;" styleClass="context-menu" GridPane.columnIndex="4" />
                                                    </children>
                                                 </GridPane>
@@ -267,29 +293,29 @@
                         </BorderPane>
                      </content>
                   </Tab>
-                  <Tab text="TABLERO">
+                  <Tab text="ESTADO ORDENES">
                      <content>
                         <BorderPane prefHeight="452.0" prefWidth="805.0">
                            <right>
-                              <VBox fillWidth="false" focusTraversable="true" prefHeight="586.0" prefWidth="658.0" BorderPane.alignment="CENTER">
+                              <VBox fillWidth="false" focusTraversable="true" prefHeight="561.0" prefWidth="665.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Separator prefHeight="17.0" prefWidth="364.0" visible="false" />
-                                    <VBox alignment="CENTER" fillWidth="false" prefHeight="565.0" prefWidth="647.0" spacing="10.0" style="-fx-border-color: #4285F4; -fx-border-width: 2; -fx-border-radius: 15;">
+                                    <Separator prefHeight="48.0" prefWidth="364.0" visible="false" />
+                                    <VBox alignment="CENTER" fillWidth="false" prefHeight="468.0" prefWidth="658.0" spacing="10.0" style="-fx-border-color: #4285F4; -fx-border-width: 2; -fx-border-radius: 15;">
                                        <children>
                                           <Label text="Lista ordenes terminadas">
                                              <font>
                                                 <Font name="Verdana Bold" size="24.0" />
                                              </font>
                                           </Label>
-                                          <HBox fx:id="tableBilled" alignment="CENTER" focusTraversable="true" prefHeight="506.0" prefWidth="643.0" spacing="8.0">
-                                             <padding>
-                                                <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
-                                             </padding>
-                                          </HBox>
+                                          <ScrollPane fx:id="tableFinished" prefHeight="380.0" prefWidth="664.0">
+                                             <content>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="378.0" prefWidth="649.0" />
+                                             </content>
+                                          </ScrollPane>
                                        </children>
                                     </VBox>
-                                    <Separator prefHeight="17.0" prefWidth="364.0" visible="false" />
-                                    <VBox alignment="CENTER" prefHeight="125.0" prefWidth="667.0" style="-fx-border-color: #4285F4; -fx-border-width: 2; -fx-border-radius: 15;">
+                                    <Separator prefHeight="42.0" prefWidth="364.0" visible="false" />
+                                    <VBox alignment="CENTER" prefHeight="143.0" prefWidth="658.0" style="-fx-border-color: #4285F4; -fx-border-width: 2; -fx-border-radius: 15;">
                                        <children>
                                           <Label text="Facturar">
                                              <font>
@@ -303,13 +329,13 @@
                                                       <Font name="Consolas" size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField fx:id="idBilled1" prefHeight="37.0" prefWidth="159.0" style="-fx-background-color: white; -fx-text-fill: black;" styleClass="context-menu" />
+                                                <TextField fx:id="idFinished" prefHeight="37.0" prefWidth="159.0" style="-fx-background-color: white; -fx-text-fill: black;" styleClass="context-menu" />
                                                 <ImageView fitHeight="33.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@../uiImg/icons/busqueda.png" />
+                                                      <Image url="@../uiImg/icons/busqueda%20(1).png" />
                                                    </image>
                                                 </ImageView>
-                                                <Button mnemonicParsing="false" onAction="#searchOrder" prefHeight="39.0" prefWidth="92.0" text="OK" />
+                                                <Button mnemonicParsing="false" onAction="#searchOrderFinished" prefHeight="39.0" prefWidth="92.0" text="OK" />
                                              </children>
                                              <padding>
                                                 <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
@@ -318,20 +344,7 @@
                                        </children>
                                     </VBox>
                                     <Separator prefHeight="34.0" prefWidth="429.0" visible="false" />
-                                    <VBox alignment="CENTER" fillWidth="false" prefHeight="565.0" prefWidth="647.0" spacing="10.0" style="-fx-border-color: #4285F4; -fx-border-width: 2; -fx-border-radius: 15;">
-                                       <children>
-                                          <Label text="Lista ordenes facturadas">
-                                             <font>
-                                                <Font name="Verdana Bold" size="24.0" />
-                                             </font>
-                                          </Label>
-                                          <HBox fx:id="tableBilled1" alignment="CENTER" focusTraversable="true" prefHeight="506.0" prefWidth="643.0" spacing="8.0">
-                                             <padding>
-                                                <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
-                                             </padding>
-                                          </HBox>
-                                       </children>
-                                    </VBox>
+                                    <Separator prefHeight="40.0" prefWidth="364.0" visible="false" />
                                  </children>
                               </VBox>
                            </right>
@@ -346,14 +359,14 @@
                                                 <Font name="Verdana Bold" size="24.0" />
                                              </font>
                                           </Label>
-                                          <HBox fx:id="tableNOBilled" alignment="CENTER" focusTraversable="true" prefHeight="373.0" prefWidth="664.0" spacing="8.0">
-                                             <padding>
-                                                <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
-                                             </padding>
-                                          </HBox>
+                                          <ScrollPane fx:id="tableNOFinished" prefHeight="380.0" prefWidth="664.0">
+                                            <content>
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="377.0" prefWidth="660.0" />
+                                            </content>
+                                          </ScrollPane>
                                        </children>
                                     </VBox>
-                                    <VBox alignment="CENTER" prefHeight="125.0" prefWidth="667.0" style="-fx-border-color: #4285F4; -fx-border-width: 2; -fx-border-radius: 15;">
+                                    <VBox alignment="CENTER" prefHeight="114.0" prefWidth="667.0" style="-fx-border-color: #4285F4; -fx-border-width: 2; -fx-border-radius: 15;">
                                        <children>
                                           <Label text="Terminar orden">
                                              <font>
@@ -367,7 +380,7 @@
                                                       <Font name="Consolas" size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField fx:id="idBilled" prefHeight="37.0" prefWidth="159.0" style="-fx-background-color: white; -fx-text-fill: black;" styleClass="context-menu" />
+                                                <TextField fx:id="idNOFinished" prefHeight="37.0" prefWidth="159.0" style="-fx-background-color: white; -fx-text-fill: black;" styleClass="context-menu" />
                                                 <ImageView fitHeight="33.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../uiImg/icons/busqueda.png" />
@@ -381,12 +394,43 @@
                                           </HBox>
                                        </children>
                                     </VBox>
+                                    <Separator prefHeight="0.0" prefWidth="392.0" visible="false" />
                                  </children>
                                  <padding>
                                     <Insets left="8.0" />
                                  </padding>
                               </VBox>
                            </left>
+                        </BorderPane>
+                     </content>
+                  </Tab>
+                  <Tab text="ORDENES FACTURADAS">
+                     <content>
+                        <BorderPane prefHeight="452.0" prefWidth="805.0">
+                           <center>
+                              <VBox fillWidth="false" focusTraversable="true" prefHeight="586.0" prefWidth="685.0" spacing="5.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Separator prefHeight="14.0" prefWidth="392.0" visible="false" />
+                                    <VBox alignment="CENTER" prefHeight="532.0" prefWidth="1348.0" style="-fx-border-color: #4285F4; -fx-border-width: 2; -fx-border-radius: 15;">
+                                       <children>
+                                          <Label contentDisplay="CENTER" prefHeight="30.0" prefWidth="337.0" text="Lista ordenes facturadas">
+                                             <font>
+                                                <Font name="Verdana Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <ScrollPane fx:id="tableBilled" prefHeight="499.0" prefWidth="1344.0">
+                                            <content>
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="494.0" prefWidth="1339.0" />
+                                            </content>
+                                          </ScrollPane>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                                 <padding>
+                                    <Insets left="8.0" />
+                                 </padding>
+                              </VBox>
+                           </center>
                         </BorderPane>
                      </content>
                   </Tab>

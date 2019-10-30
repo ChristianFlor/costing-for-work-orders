@@ -1,6 +1,4 @@
 package ui;
-
-
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Date;
@@ -13,68 +11,114 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import model.Company;
 import model.Order;
 
 public class MainController {
+	 	@FXML
+	    private TextField nameCompany;
 
+	    @FXML
+	    private TextField cifPresupuestado;
 
-    @FXML
-    private TextField idOrder;
+	    @FXML
+	    private TextArea descripcion;
 
-    @FXML
-    private TextField CIFOrder;
+	    @FXML
+	    private ComboBox<String> typeBase;
 
-    @FXML
-    private TextField MODOrder;
+	    @FXML
+	    private TextField valueBase;
+	    
+	    @FXML
+	    private TextField idOrder;
 
-    @FXML
-    private TextField MDOrder;
+	    @FXML
+	    private TextField CIFOrder;
 
-    @FXML
-    private TextField CIFAplicadoOrder;
+	    @FXML
+	    private TextField MODOrder;
 
-    @FXML
-    private ComboBox<String> isBilled;
+	    @FXML
+	    private TextField MDOrder;
 
-    @FXML
-    private TextField nameCompany;
+	    @FXML
+	    private TextField CIFAplicadoOrder;
 
-    @FXML
-    private TextField cifPresupuestado;
+	    @FXML
+	    private DatePicker fechainicio;
 
-    @FXML
-    private TextArea descripcion;
+	    @FXML
+	    private ComboBox<String> isFinished;
 
-    @FXML
-    private ComboBox<String> typeBase;
+	    @FXML
+	    private DatePicker fechaFin;
 
-    @FXML
-    private TextField valueBase;
+	    @FXML
+	    private ScrollPane tableFinished;
 
-    @FXML
-    private HBox tableBilled;
+	    @FXML
+	    private TextField idFinished;
 
-    @FXML
-    private HBox tableNOBilled;
+	    @FXML
+	    private ScrollPane tableNOFinished;
 
-    @FXML
-    private TextField idBilled;
-    @FXML
-    private DatePicker fechainicio;
-    @FXML
-    private DatePicker fechaFin;
-    
-    private TableView<Order> listIsBilled;
-    private TableView<Order> listNOBilled;
+	    @FXML
+	    private TextField idNOFinished;
+
+	    @FXML
+	    private ScrollPane tableBilled;
+
+	    @FXML
+	    void aboutProgram(ActionEvent event) {
+
+	    }
+
+	    @FXML
+	    void exit(ActionEvent event) {
+	    	((Stage)(((Button)event.getSource()).getScene().getWindow())).close(); 
+	    }
+
+	    @FXML
+	    void save(ActionEvent event) {
+	    	/*
+	    	try {
+				program.save(getPath());
+				Alert alert = new Alert(AlertType.CONFIRMATION);
+				alert.setContentText("The game was saved successfully");
+				alert.show();
+			} catch (FileNotFoundException e) {
+				
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setContentText("File not found");
+				alert.show();
+				e.printStackTrace();
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}*/
+	    }
+
+	    @FXML
+	    void searchOrderFinished(ActionEvent event) {
+
+	    }
+	    @FXML
+	    void searchOrder(ActionEvent event) {
+
+	    }
+/////////////////////////////////////////////
+	private TableView<Order> listNOFinished;
+    private TableView<Order> listIsFinished;
+    private TableView<Order> listBilled;
     
     private ObservableList<Order> data;
     private Company program;
@@ -84,7 +128,7 @@ public class MainController {
     	try {
     	program = new Company(nameCompany.getText(), descripcion.getText(), typeBase.getValue(),Double.parseDouble(valueBase.getText()),Double.parseDouble(cifPresupuestado.getText()));
     	Alert a = new Alert(AlertType.INFORMATION);
-		a.setContentText("La compañia"+nameCompany.getText()+", ha sido creada correctamente");
+		a.setContentText("La compañia: "+nameCompany.getText()+", ha sido creada correctamente");
 		a.show();
 		nameCompany.setEditable(false);
 		descripcion.setEditable(false);
@@ -115,28 +159,92 @@ public class MainController {
     	int dayS= periodInit.getDayOfMonth();
     	int yearS = periodInit.getYear();
     	
-    	boolean bill= isBilled.getValue().equals("SI")? isBilled.getValue().equals("NO"): true;
+    	boolean finished= isFinished.getValue().equals("SI")?true: false;
     	
     	LocalDate periodFinal= fechaFin.getValue();
     	Month pF = periodFinal.getMonth();
     	int monthF= pF.getValue();
     	int dayF= periodFinal.getDayOfMonth();
     	int yearF = periodFinal.getYear();
-    	
-    	program.getRegistry().addNewOrder(idOrder.getText(), Double.parseDouble(MDOrder.getText()), Double.parseDouble(MODOrder.getText()),Double.parseDouble(CIFOrder.getText()),dayS, monthS,yearS,bill, dayF, monthF,yearF);
+    	System.out.println(idOrder.getText()+" a "+ Double.parseDouble(MDOrder.getText())+" b: "+ Double.parseDouble(MODOrder.getText())+" c: "+ Double.parseDouble(CIFOrder.getText())+" d: "+ dayS+" e: "+ monthS+" f: "+ yearS);
+    	program.getRegistry().addOrderNB(idOrder.getText(), Double.parseDouble(MDOrder.getText()), Double.parseDouble(MODOrder.getText()),Double.parseDouble(CIFOrder.getText()),dayS, monthS,yearS);
+    	//program.getRegistry().addNewOrder(idOrder.getText(), Double.parseDouble(MDOrder.getText()), Double.parseDouble(MODOrder.getText()),Double.parseDouble(CIFOrder.getText()),dayS, monthS,yearS,finished, dayF, monthF,yearF);
+    	listNOFinished = createTableNOFinished();
+    	listIsFinished = createTableFinished();
+    	listBilled = createTableBilled();
     	Alert a = new Alert(AlertType.INFORMATION);
 		a.setContentText("La orden"+idOrder.getText()+", ha sido añadida correctamente");
 		a.show();
     	
     }
-    @FXML
-    void searchOrder(ActionEvent event) {
 
+    private TableView<Order> createTableFinished(){
+    	listIsFinished = new TableView<Order>();
+    	data = createDataFinished();
+    	listIsFinished.setEditable(true);
+    	
+    	TableColumn<Order, String> id= new TableColumn<Order, String>("ID");
+    	id.setCellValueFactory(new PropertyValueFactory<Order, String>("id"));
+    	
+    	TableColumn<Order, Date> start = new TableColumn<Order, Date>("FECHA INICIO");
+    	start.setCellValueFactory(new PropertyValueFactory<Order, Date>("start"));
+    	
+    	TableColumn<Order, Date> finish = new TableColumn<Order, Date>("FECHA FIN");
+    	finish.setCellValueFactory(new PropertyValueFactory<Order, Date>("finish"));
+    	
+    	TableColumn<Order, String> MD= new TableColumn<Order, String>("MD");
+    	MD.setCellValueFactory(new PropertyValueFactory<Order, String>("MD"));
+    	
+    	TableColumn<Order, String> MOD= new TableColumn<Order, String>("MOD");
+    	MOD.setCellValueFactory(new PropertyValueFactory<Order, String>("MOD"));
+    	
+    	TableColumn<Order, String> CIF= new TableColumn<Order, String>("CIF");
+    	CIF.setCellValueFactory(new PropertyValueFactory<Order, String>("CIF"));
+    	
+    	TableColumn<Order, String> CIFApplied= new TableColumn<Order, String>("CIF Aplicados");
+    	CIFApplied.setCellValueFactory(new PropertyValueFactory<Order, String>("CIFApplied"));
+    	
+    	listIsFinished.setItems(data);
+    	listIsFinished.getColumns().addAll(id, start,finish,MD,MOD,CIF,CIFApplied);
+    	listIsFinished.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+    	
+    	return listIsFinished;
+    }
+    private TableView<Order> createTableNOFinished(){
+    	listNOFinished = new TableView<Order>();
+    	data = createDataNOFinished();
+    	listNOFinished.setEditable(true);
+    	
+    	TableColumn<Order, String> id= new TableColumn<Order, String>("ID");
+    	id.setCellValueFactory(new PropertyValueFactory<Order, String>("id"));
+    	
+    	TableColumn<Order, Date> start = new TableColumn<Order, Date>("FECHA INICIO");
+    	start.setCellValueFactory(new PropertyValueFactory<Order, Date>("start"));
+    	
+    	TableColumn<Order, Date> finish = new TableColumn<Order, Date>("FECHA FIN");
+    	finish.setCellValueFactory(new PropertyValueFactory<Order, Date>("finish"));
+    	
+    	TableColumn<Order, String> MD= new TableColumn<Order, String>("MD");
+    	MD.setCellValueFactory(new PropertyValueFactory<Order, String>("MD"));
+    	
+    	TableColumn<Order, String> MOD= new TableColumn<Order, String>("MOD");
+    	MOD.setCellValueFactory(new PropertyValueFactory<Order, String>("MOD"));
+    	
+    	TableColumn<Order, String> CIF= new TableColumn<Order, String>("CIF");
+    	CIF.setCellValueFactory(new PropertyValueFactory<Order, String>("CIF"));
+    	
+    	TableColumn<Order, String> CIFApplied= new TableColumn<Order, String>("CIF Aplicados");
+    	CIFApplied.setCellValueFactory(new PropertyValueFactory<Order, String>("CIFApplied"));
+    	
+    	listNOFinished.setItems(data);
+    	listNOFinished.getColumns().addAll(id, start,finish,MD,MOD,CIF,CIFApplied);
+    	listNOFinished.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+    	return listNOFinished;
     }
     private TableView<Order> createTableBilled(){
-    	listIsBilled = new TableView<Order>();
+    	listBilled = new TableView<Order>();
     	data = createDataBilled();
-    	listIsBilled.setEditable(true);
+    	listBilled.setEditable(true);
     	
     	TableColumn<Order, String> id= new TableColumn<Order, String>("ID");
     	id.setCellValueFactory(new PropertyValueFactory<Order, String>("id"));
@@ -159,45 +267,13 @@ public class MainController {
     	TableColumn<Order, String> CIFApplied= new TableColumn<Order, String>("CIF Aplicados");
     	CIFApplied.setCellValueFactory(new PropertyValueFactory<Order, String>("CIFApplied"));
     	
-    	listIsBilled.setItems(data);
-    	listIsBilled.getColumns().addAll(id, start,finish,MD,MOD,CIF,CIFApplied);
-    	listIsBilled.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+    	listBilled.setItems(data);
+    	listBilled.getColumns().addAll(id, start,finish,MD,MOD,CIF,CIFApplied);
+    	listBilled.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     	
-    	return listIsBilled;
+    	return listIsFinished;
     }
-    private TableView<Order> createTableNOBilled(){
-    	listNOBilled = new TableView<Order>();
-    	data = createDataNOBilled();
-    	listNOBilled.setEditable(true);
-    	
-    	TableColumn<Order, String> id= new TableColumn<Order, String>("ID");
-    	id.setCellValueFactory(new PropertyValueFactory<Order, String>("id"));
-    	
-    	TableColumn<Order, Date> start = new TableColumn<Order, Date>("FECHA INICIO");
-    	start.setCellValueFactory(new PropertyValueFactory<Order, Date>("start"));
-    	
-    	TableColumn<Order, Date> finish = new TableColumn<Order, Date>("FECHA FIN");
-    	finish.setCellValueFactory(new PropertyValueFactory<Order, Date>("finish"));
-    	
-    	TableColumn<Order, String> MD= new TableColumn<Order, String>("MD");
-    	MD.setCellValueFactory(new PropertyValueFactory<Order, String>("MD"));
-    	
-    	TableColumn<Order, String> MOD= new TableColumn<Order, String>("MOD");
-    	MOD.setCellValueFactory(new PropertyValueFactory<Order, String>("MOD"));
-    	
-    	TableColumn<Order, String> CIF= new TableColumn<Order, String>("CIF");
-    	CIF.setCellValueFactory(new PropertyValueFactory<Order, String>("CIF"));
-    	
-    	TableColumn<Order, String> CIFApplied= new TableColumn<Order, String>("CIF Aplicados");
-    	CIFApplied.setCellValueFactory(new PropertyValueFactory<Order, String>("CIFApplied"));
-    	
-    	listNOBilled.setItems(data);
-    	listNOBilled.getColumns().addAll(id, start,finish,MD,MOD,CIF,CIFApplied);
-    	listNOBilled.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-    	return listNOBilled;
-    }
-    
-    private ObservableList<Order> createDataBilled(){
+    private ObservableList<Order> createDataFinished(){
     	data = FXCollections.observableArrayList();
     	
     	for (int i = 0; i < program.getRegistry().getPeriods().size(); i++) {
@@ -206,15 +282,25 @@ public class MainController {
 		
     	return data;
     }
-    private ObservableList<Order> createDataNOBilled(){
+    private ObservableList<Order> createDataNOFinished(){
     	data = FXCollections.observableArrayList();
     	data.addAll(program.getRegistry().getOrdersNotBilled());
     	
     	return data;
     }
-   
+    private ObservableList<Order> createDataBilled(){
+    	data = FXCollections.observableArrayList();
+    	
+    	for (int i = 0; i < program.getRegistry().getPeriods().size(); i++) {
+    		if(program.getRegistry().getPeriods().get(i).getOrders().get(i).isBilled()) {
+    			data.addAll(program.getRegistry().getPeriods().get(i).getOrders().get(i));
+    		}
+		}
+    	
+    	return data;
+    }
     public void initialize() {
-    	isBilled.getItems().addAll("SI","NO");
+    	isFinished.getItems().addAll("SI","NO");
     	typeBase.getItems().addAll("MONEY","HOURS");
     }
 }

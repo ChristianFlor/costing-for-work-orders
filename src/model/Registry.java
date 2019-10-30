@@ -7,6 +7,9 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * This class represents the company order record
@@ -18,11 +21,11 @@ public class Registry {
 	/**
 	 * It is a list that contains the registry for periods
 	 */
-	private ArrayList<Period> periods;
+	private List<Period> periods;
 	/**
 	 * It is a list that contains the registry of orders not billed
 	 */
-	private ArrayList<Order> ordersNotBilled;
+	private List<Order> ordersNotFinished;
 	
 ////////ATRUBUTES//////////
 	
@@ -37,6 +40,7 @@ public class Registry {
 	 * Create 12 periods whit month names in Spanish and add to list periods
 	 */
 	public Registry() {
+		ordersNotFinished= new ArrayList<Order>();
 		periods = new ArrayList<Period>(12);
 		periods.add(new Period("Enero"));
 		periods.add(new Period("Febrero"));
@@ -61,10 +65,10 @@ public class Registry {
 		int orderI = searchOrder(id);
 		boolean changed = orderI != -1;
 		if(changed) {
-			Order order = ordersNotBilled.get(orderI);
+			Order order = ordersNotFinished.get(orderI);
 			order.setFinish(dayF, monthF, yearF);
 			addOrderBilled(order, monthF-1);
-			ordersNotBilled.remove(orderI);
+			ordersNotFinished.remove(orderI);
 		}
 		return true;
 	}
@@ -76,14 +80,14 @@ public class Registry {
 	 */
 	public int searchOrder(String id) {
 		int i = -1;
-		int l = ordersNotBilled.size()-1;
+		int l = ordersNotFinished.size()-1;
 		int s = 0;
 		int m = (s+l)/2;
 		while(s<l) {
-			if(ordersNotBilled.get(m).getId().compareTo(id) == 0) {
+			if(ordersNotFinished.get(m).getId().compareTo(id) == 0) {
 				s = m;
 				l = s;
-			}else if(ordersNotBilled.get(m).getId().compareTo(id) > 0) {
+			}else if(ordersNotFinished.get(m).getId().compareTo(id) > 0) {
 				l = m-1;
 				m = (s+l)/2;
 			}else{
@@ -91,7 +95,7 @@ public class Registry {
 				m = (s+l)/2;
 			}
 		}
-		if(s==l && ordersNotBilled.equals(id)) {
+		if(s==l && ordersNotFinished.equals(id)) {
 			i = s;
 		}
 		
@@ -107,13 +111,21 @@ public class Registry {
 			Order newOrder = new Order(id, md, mod, cif, dayS, monthS, yearS, dayF, monthF, yearF);
 			addOrderBilled(newOrder, monthF-1);
 		}else {
-			Order newOrder = new Order(id, md, mod, cif, dayS, monthS, yearS);
-			addOrderNotBilled(newOrder);
+			//Order newOrder = new Order();
+			addOrderNB(id, md, mod, cif, dayS, monthS, yearS);
 		}
 			
 		
 	}
-	
+	public void addOrderNB(String id, double md, double mod, double cif, int dayS, int monthS, int yearS) {
+		ordersNotFinished.add(new Order(id, md, mod, cif, dayS, monthS, yearS));
+		
+		//sortByIdOrder();
+	}
+	public void sortByIdOrder(){
+		Comparator<Order> orderComparator = new IdOrderComparator();
+		Collections.sort(ordersNotFinished, orderComparator);	
+	}
 	/**
 	 * agrega una orden a la lista de ordenes del periodo que le corresponde
 	 * en orden
@@ -152,18 +164,18 @@ public class Registry {
 	public void addOrderNotBilled(Order newOrder) {
 		String id = newOrder.getId();
 		boolean added = false;
-		int l = ordersNotBilled.size();
+		int l = ordersNotFinished.size()-1;
 		int s = 0;
 		int m = (s+l)/2;
 		while(!added) {
 			if(s == l) {
-				if(ordersNotBilled.get(s).getId().compareTo(id) > 0) {
-					ordersNotBilled.add(s, newOrder);
+				if(ordersNotFinished.get(s).getId().compareTo(id) > 0) {
+					ordersNotFinished.add(s, newOrder);
 				}else {
-					ordersNotBilled.add(s+1, newOrder);
+					ordersNotFinished.add(s+1, newOrder);
 				}
 				added = true;
-			}else if(ordersNotBilled.get(m).getId().compareTo(id) > 0) {
+			}else if(ordersNotFinished.get(m).getId().compareTo(id) > 0) {
 				l = m-1;
 				m = (s+l)/2;
 			}else{
@@ -172,21 +184,22 @@ public class Registry {
 			}
 		}
 	}
+	
 
 /////////////////GET and SET/////////////////////////////
 	
 	/**
 	 * @return the periods list
 	 */
-	public ArrayList<Period> getPeriods() {
+	public List<Period> getPeriods() {
 		return periods;
 	}
 	
 	/**
 	 * @return the ordersNotBilled list
 	 */
-	public ArrayList<Order> getOrdersNotBilled() {
-		return ordersNotBilled;
+	public List<Order> getOrdersNotBilled() {
+		return ordersNotFinished;
 	}
 	
 	/**

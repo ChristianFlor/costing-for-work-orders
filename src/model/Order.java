@@ -10,18 +10,18 @@ package model;
  * @author ASUS
  *
  */
-public class Order {
+public class Order implements Comparable<Order> {
 
 ////////RELATIONS//////////
 	
 	/**
 	 * repreenta la fecha de inicio de la orden
 	 */
-	private Date start;
+	private DateOrder start;
 	/**
 	 * representa la fecha en que finalizo la orden
 	 */
-	private Date finish;
+	private DateOrder finish;
 	
 ////////ATRUBUTES//////////
 	
@@ -46,6 +46,10 @@ public class Order {
 	 * representa los costos indirectos de fabricacion aplicados de la orden
 	 */
 	private double CIFApplied;
+	/**
+	 * representa si la orden ah sido facturada o no
+	 */
+	private boolean billed;
 
 	
 ////////CONSTRUCTOR//////////
@@ -58,7 +62,8 @@ public class Order {
 		MD = md;
 		MOD = mod;
 		CIF = cif;
-		start = new Date(dayS, monthS, yearS);
+		billed= false;
+		start = new DateOrder(dayS, monthS, yearS);
 	}
 	
 	/**
@@ -69,8 +74,9 @@ public class Order {
 		MD = md;
 		MOD = mod;
 		CIF = cif;
-		start = new Date(dayS, monthS, yearS);
-		finish = new Date(dayF, monthF, yearF);
+		billed= false;
+		start = new DateOrder(dayS, monthS, yearS);
+		finish = new DateOrder(dayF, monthF, yearF);
 	}
 	
 	/**
@@ -88,21 +94,21 @@ public class Order {
 	/**
 	 * retorna la fecha de inicio de la orden
 	 */
-	public Date getStart() {
+	public DateOrder getStart() {
 		return start;
 	}
 	
 	/**
 	 * retorna la fecha de fin de la orden
 	 */
-	public Date getFinish() {
+	public DateOrder getFinish() {
 		return finish;
 	}
 	/**
 	 * agrega una fecha de fin de la orden
 	 */
 	public void setFinish(int dayF, int monthF, int yearF) {
-		Date nFinish = new Date(dayF, monthF, yearF);
+		DateOrder nFinish = new DateOrder(dayF, monthF, yearF);
 		this.finish = nFinish;
 	}
 	
@@ -159,5 +165,22 @@ public class Order {
 		return CIFApplied;
 	}
 
+	public boolean isBilled() {
+		return billed;
+	}
+
+	public void setBilled(boolean billed) {
+		this.billed = billed;
+	}
+
+	@Override
+	public int compareTo(Order otherDate) {
+		int comparation = start.compareTo(otherDate.start);
+		return comparation;
+	}
+	public int compareTo1(Order otherDate) {
+		int comparation = finish.compareTo(otherDate.finish);
+		return comparation;
+	}
 
 }

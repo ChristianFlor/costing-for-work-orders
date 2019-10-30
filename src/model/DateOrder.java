@@ -6,10 +6,14 @@
  */
 package model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * This class represents a date
  */
-public class Date {
+public class DateOrder implements Comparable<DateOrder>{
 
 ////////ATRUBUTES//////////
 	
@@ -33,12 +37,23 @@ public class Date {
 	 * Create an object 
 	 * params
 	 */
-	public Date(int day, int month, int year) {
+	public DateOrder(int day, int month, int year) {
 		this.day = day;
 		this.month = month;
 		this.year = year;
 	}
-	
+	public String toString() {
+		return year+"-"+addZero(month)+"-"+addZero(day);
+	}
+	public String addZero(int n) {
+		String msg="";
+		if(n<10) {
+			msg="0"+n;
+		}else {
+			msg=""+n;
+		}
+		return msg;
+	}
 	
 /////////////////GET and SET/////////////////////////////
 	
@@ -62,6 +77,26 @@ public class Date {
 	 */
 	public int getYear() {
 		return year;
+	}
+
+	public String compare() {
+		return year+"-"+month+"-"+day;
+	}
+	@Override
+	public int compareTo(DateOrder o){
+		int comparation = 0;
+		SimpleDateFormat objSDF = new SimpleDateFormat("yyyy-MM-dd"); 
+	    Date dt_1;
+	    Date dt_2;
+		try {
+			dt_1 = objSDF.parse(compare());
+			dt_2 = objSDF.parse(o.compare());
+			comparation=dt_1.compareTo(dt_2);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}  
+	   
+		return comparation;
 	}
 	
 	
