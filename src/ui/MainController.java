@@ -292,9 +292,13 @@ public class MainController {
     	data = FXCollections.observableArrayList();
     	
     	for (int i = 0; i < program.getRegistry().getPeriods().size(); i++) {
-    		if(program.getRegistry().getPeriods().get(i).getOrders().get(i).isBilled()) {
-    			data.addAll(program.getRegistry().getPeriods().get(i).getOrders().get(i));
-    		}
+    		for (int j = 0; j < program.getRegistry().getPeriods().get(i).getOrders().size(); j++) {
+    			if(program.getRegistry().getPeriods().get(i).getOrders().get(i).isBilled()) {
+        			data.addAll(program.getRegistry().getPeriods().get(i).getOrders().get(i));
+        		}
+			}
+    		
+    		
 		}
     	
     	return data;

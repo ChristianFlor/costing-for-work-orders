@@ -21,11 +21,11 @@ public class Registry {
 	/**
 	 * It is a list that contains the registry for periods
 	 */
-	private List<Period> periods;
+	private ArrayList<Period> periods;
 	/**
-	 * It is a list that contains the registry of orders not billed
+	 * It is a list that contains the registry of orders not finished
 	 */
-	private List<Order> ordersNotFinished;
+	private ArrayList<Order> ordersNotFinished;
 	
 ////////ATRUBUTES//////////
 	
@@ -117,6 +117,7 @@ public class Registry {
 			
 		
 	}
+	
 	public void addOrderNB(String id, double md, double mod, double cif, int dayS, int monthS, int yearS) {
 		ordersNotFinished.add(new Order(id, md, mod, cif, dayS, monthS, yearS));
 		
@@ -161,7 +162,7 @@ public class Registry {
 	 * en orden
 	 * 
 	 */
-	public void addOrderNotBilled(Order newOrder) {
+	public void addOrderNotBilled2(Order newOrder) {
 		String id = newOrder.getId();
 		boolean added = false;
 		int l = ordersNotFinished.size()-1;
@@ -191,14 +192,14 @@ public class Registry {
 	/**
 	 * @return the periods list
 	 */
-	public List<Period> getPeriods() {
+	public ArrayList<Period> getPeriods() {
 		return periods;
 	}
 	
 	/**
 	 * @return the ordersNotBilled list
 	 */
-	public List<Order> getOrdersNotBilled() {
+	public ArrayList<Order> getOrdersNotBilled() {
 		return ordersNotFinished;
 	}
 	
