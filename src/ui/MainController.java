@@ -19,6 +19,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -88,6 +89,11 @@ public class MainController {
 	    private FinishedController finishedController;
 	    
 	    private String idSearch;
+	    
+	    @FXML
+	    private Label tasaCIF;
+	    
+	   
 	    
 	    @FXML
 	    void aboutProgram(ActionEvent event) {
@@ -187,11 +193,13 @@ public class MainController {
 		descripcion.setEditable(false);
 		valueBase.setEditable(false);
 		cifPresupuestado.setEditable(false);
+		tasaCIF.setText(tasaCIF.getText()+program.getCIF());
     	}catch(Exception e) {
     		Alert a = new Alert(AlertType.ERROR);
     		a.setContentText("Digite los valores validos");
     		a.show();
     	}
+    	
     }
     @FXML
     void clean(ActionEvent event) {

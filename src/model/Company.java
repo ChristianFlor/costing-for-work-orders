@@ -59,6 +59,8 @@ public class Company {
 	 * Is the budget CIF
 	 */
 	private double budgtedCif;
+	
+	private double CIF;
 
 ////////CONSTRUCTOR//////////
 	
@@ -73,6 +75,7 @@ public class Company {
 		this.base = base;
 		this.baseType = baseType;
 		this.budgtedCif = budgtedCif;
+		CIF = budgtedCif/base;
 	}
 	
 	public void save(String path) throws IOException {
@@ -89,7 +92,10 @@ public class Company {
 	
 /////////////////GET and SET/////////////////////////////
 
-
+	public double getCIF() {
+		return CIF;
+	}
+	
 	/**
 	 * @return the company's registry
 	 */

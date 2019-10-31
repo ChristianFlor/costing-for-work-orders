@@ -118,7 +118,7 @@
                                                             <Font name="Verdana" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label text="Costo indirecto frabricación:" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                                      <Label text="Base real:" GridPane.columnIndex="4" GridPane.rowIndex="1">
                                                          <font>
                                                             <Font name="Verdana" size="14.0" />
                                                          </font>
@@ -148,13 +148,13 @@
                                                             <Font name="Verdana" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label text="CIF Aplicado:" GridPane.rowIndex="2">
+                                                      <Label text="Base real:" visible="false" GridPane.rowIndex="2">
                                                          <font>
                                                             <Font name="Verdana" size="14.0" />
                                                          </font>
                                                       </Label>
                                                       <DatePicker fx:id="fechainicio" prefHeight="38.0" prefWidth="164.0" style="-fx-text-fill: black;" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                                                      <TextField fx:id="CIFAplicadoOrder" prefHeight="37.0" prefWidth="95.0" style="-fx-text-fill: black; -fx-background-color: white;" styleClass="context-menu" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                                      <TextField fx:id="CIFAplicadoOrder" prefHeight="37.0" prefWidth="95.0" style="-fx-text-fill: black; -fx-background-color: white;" styleClass="context-menu" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                                          <font>
                                                             <Font size="5.0" />
                                                          </font>
@@ -283,6 +283,7 @@
                                              </font></Button>
                                        </children>
                                     </VBox>
+                                    <Label fx:id="tasaCIF" text="tasa CIF: " />
                                     <Button mnemonicParsing="false" onAction="#clean" text="Limpiar" />
                                  </children>
                                  <padding>
