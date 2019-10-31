@@ -1,6 +1,9 @@
 package ui;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Date;
@@ -85,6 +88,7 @@ public class MainController {
 	    private FinishedController finishedController;
 	    
 	    private String idSearch;
+	    
 	    @FXML
 	    void aboutProgram(ActionEvent event) {
 
@@ -248,6 +252,10 @@ public class MainController {
     	data = createDataNOFinished();
     	listNOFinished.setEditable(true);
     	
+    	double tasa =program.getBudgtedCif()/program.getBase();
+    	
+    	program.getRegistry().calculateCIFAplicatedOrdersNotFinished(tasa);
+    	
     	TableColumn<Order, String> id= new TableColumn<Order, String>("ID");
     	id.setCellValueFactory(new PropertyValueFactory<Order, String>("id"));
     	
@@ -278,6 +286,10 @@ public class MainController {
     	listIsFinished = new TableView<Order>();
     	data = createDataFinished();
     	listIsFinished.setEditable(true);
+    	
+    	double tasa =program.getBudgtedCif()/program.getBase();
+    	
+    	program.getRegistry().calculateCIFAplicatedOrdersFinished(tasa);
     	
     	TableColumn<Order, String> id= new TableColumn<Order, String>("ID");
     	id.setCellValueFactory(new PropertyValueFactory<Order, String>("id"));
@@ -363,9 +375,20 @@ public class MainController {
     	
     	return data;
     }
+    
     public void initialize() {
     	isFinished.getItems().addAll("SI","NO");
     	typeBase.getItems().addAll("MONEY","HOURS");
     	fechaFin.setStyle("-fx-text-fill: black");
+	    File f = new File(Company.DATA_PATH);
+	    FileInputStream fis = null;
+	    ObjectInputStream leerObjeto = null;
+	    try{
+	        fis = new FileInputStream( f );
+	        leerObjeto = new ObjectInputStream( fis );
+	        program = (Company)leerObjeto.readObject();
+    	}catch (Exception e) {
+			
+		}
     }
 }

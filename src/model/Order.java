@@ -79,8 +79,8 @@ public class Order implements Comparable<Order> {
 	 * ****info base, como pasar esa info?****
 	 * 
 	 */
-	public void calculateCIFApplied() {
-		
+	public void calculateCIFApplied(double tasa) {
+		CIFApplied = tasa*CIF;
 	}	
 	
 	

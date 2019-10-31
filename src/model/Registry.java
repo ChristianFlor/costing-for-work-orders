@@ -9,6 +9,7 @@ package model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -60,8 +61,20 @@ public class Registry {
 	
 /////////////METHOD////////////
 	
+	public void calculateCIFAplicatedOrdersNotFinished(double tasa) {
+		
+		for (Iterator<Order> iterator = ordersNotFinished.iterator(); iterator.hasNext();) {
+			Order order = (Order) iterator.next();
+			order.calculateCIFApplied(tasa);
+		}
+	}
 	
-	
+	public void calculateCIFAplicatedOrdersFinished(double tasa) {
+		for (Iterator<Order> iterator = ordersFinished.iterator(); iterator.hasNext();) {
+			Order order = (Order) iterator.next();
+			order.calculateCIFApplied(tasa);
+		}
+	}
 	
 
 	/**

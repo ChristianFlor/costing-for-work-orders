@@ -63,7 +63,7 @@ public class Period {
 	/**
 	 * calcula el total de md, mod, cif y cifaplicados del periodo
 	 */
-	public void calculateTotalCost() {
+	public void calculateTotalCost(double tasa) {
 		double mdTotal = 0;
 		double modTotal = 0;
 		double cifTotal = 0;
@@ -73,6 +73,7 @@ public class Period {
 			mdTotal += order.getMD();
 			modTotal += order.getMOD();
 			cifTotal += order.getCIF();
+			order.calculateCIFApplied(tasa);
 			cifAplicatedTotal += order.getCIFApplied();
 		}
 		MDTotal = mdTotal;

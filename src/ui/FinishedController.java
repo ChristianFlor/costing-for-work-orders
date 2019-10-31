@@ -38,20 +38,10 @@ public class FinishedController {
     	Alert a = new Alert(AlertType.INFORMATION);
 		a.setContentText("La orden ha sido terminada correctamente");
 		a.show();
-    	//closeButtonAction();
+		((Stage)(((Button)event.getSource()).getScene().getWindow())).close(); 
     	
     }
-   /* 
-    @FXML private javafx.scene.control.Button closeButton;
 
-    @FXML
-    private void closeButtonAction(){
-        // get a handle to the stage
-        Stage stage = (Stage) closeButton.getScene().getWindow();
-        // do what you have to do
-        stage.close();
-    }*/
-    
     public void setMainController(MainController main) {
     	mainController = main;
     }
