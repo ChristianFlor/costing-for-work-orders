@@ -324,6 +324,10 @@ public class MainController {
     	data = createDataBilled();
     	listBilled.setEditable(true);
     	
+    	double tasa =program.getBudgtedCif()/program.getBase();
+    	
+    	program.getRegistry().calculateCIFAplicatedOrdersBiled(tasa);
+    	
     	TableColumn<Order, String> id= new TableColumn<Order, String>("ID");
     	id.setCellValueFactory(new PropertyValueFactory<Order, String>("id"));
     	

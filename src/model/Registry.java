@@ -75,7 +75,15 @@ public class Registry {
 			order.calculateCIFApplied(tasa);
 		}
 	}
-	
+	public void calculateCIFAplicatedOrdersBiled(double tasa) {
+		for (int i = 0; i < periods.size(); i++) {
+			for (Iterator<Order> iterator = periods.get(i).getOrders().iterator(); iterator.hasNext();) {
+				Order order = (Order) iterator.next();
+				order.calculateCIFApplied(tasa);
+			}
+		}
+		
+	}
 
 	/**
 	 * Search a order in ordersNotBilled
