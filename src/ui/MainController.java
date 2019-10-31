@@ -1,4 +1,5 @@
 package ui;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Date;
@@ -7,6 +8,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -76,6 +80,8 @@ public class MainController {
 
 	    @FXML
 	    private ScrollPane tableBilled;
+	    
+	    private FinishedController finishedController;
 
 	    @FXML
 	    void aboutProgram(ActionEvent event) {
@@ -111,10 +117,27 @@ public class MainController {
 	    void searchOrderFinished(ActionEvent event) {
 
 	    }
+	    
 	    @FXML
 	    void searchOrder(ActionEvent event) {
-
+	    	try {
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("invoiceOrdersGUI.fxml"));
+	    		Parent root = loader.load();
+	    		Stage stage = new Stage();
+	    		stage.setScene(new Scene(root));
+	    		stage.show();
+	    		finishedController = loader.getController();
+	    		finishedController.setMainController(this);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 	    }
+	    
+	    public void finishOrder() {
+	    	System.out.println(finishedController.getCIFAPBill());
+	    	
+	    }
+	    
 /////////////////////////////////////////////
 	private TableView<Order> listNOFinished;
     private TableView<Order> listIsFinished;
@@ -297,8 +320,6 @@ public class MainController {
         			data.addAll(program.getRegistry().getPeriods().get(i).getOrders().get(i));
         		}
 			}
-    		
-    		
 		}
     	
     	return data;
