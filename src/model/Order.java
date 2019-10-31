@@ -46,10 +46,7 @@ public class Order implements Comparable<Order> {
 	 * representa los costos indirectos de fabricacion aplicados de la orden
 	 */
 	private double CIFApplied;
-	/**
-	 * representa si la orden ah sido facturada o no
-	 */
-	private boolean billed;
+
 
 	
 ////////CONSTRUCTOR//////////
@@ -62,7 +59,6 @@ public class Order implements Comparable<Order> {
 		MD = md;
 		MOD = mod;
 		CIF = cif;
-		billed= false;
 		start = new DateOrder(dayS, monthS, yearS);
 	}
 	
@@ -74,7 +70,6 @@ public class Order implements Comparable<Order> {
 		MD = md;
 		MOD = mod;
 		CIF = cif;
-		billed= false;
 		start = new DateOrder(dayS, monthS, yearS);
 		finish = new DateOrder(dayF, monthF, yearF);
 	}
@@ -127,6 +122,7 @@ public class Order implements Comparable<Order> {
 	}
 	/**
 	 * agrega md extras
+	 * @return 
 	 */
 	public void setMD(double md) {
 		MD += md;
@@ -165,13 +161,7 @@ public class Order implements Comparable<Order> {
 		return CIFApplied;
 	}
 
-	public boolean isBilled() {
-		return billed;
-	}
 
-	public void setBilled(boolean billed) {
-		this.billed = billed;
-	}
 
 	@Override
 	public int compareTo(Order otherDate) {

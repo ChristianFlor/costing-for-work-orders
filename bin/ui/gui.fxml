@@ -153,13 +153,13 @@
                                                             <Font name="Verdana" size="14.0" />
                                                          </font>
                                                       </Label>
+                                                      <DatePicker fx:id="fechainicio" prefHeight="38.0" prefWidth="164.0" style="-fx-text-fill: black;" GridPane.columnIndex="5" GridPane.rowIndex="2" />
                                                       <TextField fx:id="CIFAplicadoOrder" prefHeight="37.0" prefWidth="95.0" style="-fx-text-fill: black; -fx-background-color: white;" styleClass="context-menu" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                                          <font>
                                                             <Font size="5.0" />
                                                          </font>
                                                       </TextField>
-                                                      <DatePicker fx:id="fechainicio" prefHeight="38.0" prefWidth="164.0" style="-fx-background-color: white; -fx-text-fill: black;" styleClass="context-menu" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                                                      <Label text="Fecha Inicio::" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                                                      <Label text="Fecha Inicio:" GridPane.columnIndex="4" GridPane.rowIndex="2">
                                                          <font>
                                                             <Font name="Verdana" size="14.0" />
                                                          </font>
@@ -191,7 +191,7 @@
                                                          </font>
                                                       </Label>
                                                       <ComboBox fx:id="isFinished" prefHeight="39.0" prefWidth="159.0" promptText="Orden terminada:" style="-fx-background-color: white;" styleClass="context-menu" />
-                                                      <DatePicker fx:id="fechaFin" style="-fx-background-color: white; -fx-text-fill: black;" styleClass="context-menu" GridPane.columnIndex="4" />
+                                                      <DatePicker fx:id="fechaFin" style="-fx-text-fill: black;" GridPane.columnIndex="4" />
                                                    </children>
                                                 </GridPane>
                                              </children>
@@ -309,7 +309,7 @@
                                           </Label>
                                           <ScrollPane fx:id="tableFinished" prefHeight="380.0" prefWidth="664.0">
                                              <content>
-                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="378.0" prefWidth="649.0" />
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="378.0" prefWidth="664.0" />
                                              </content>
                                           </ScrollPane>
                                        </children>
@@ -361,7 +361,7 @@
                                           </Label>
                                           <ScrollPane fx:id="tableNOFinished" prefHeight="380.0" prefWidth="664.0">
                                             <content>
-                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="377.0" prefWidth="660.0" />
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="377.0" prefWidth="677.0" />
                                             </content>
                                           </ScrollPane>
                                        </children>
@@ -420,7 +420,7 @@
                                           </Label>
                                           <ScrollPane fx:id="tableBilled" prefHeight="499.0" prefWidth="1344.0">
                                             <content>
-                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="494.0" prefWidth="1339.0" />
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="494.0" prefWidth="1352.0" />
                                             </content>
                                           </ScrollPane>
                                        </children>

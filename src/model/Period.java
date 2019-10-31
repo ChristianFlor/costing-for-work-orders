@@ -20,7 +20,7 @@ public class Period {
 	/**
 	 * Is a list that contains all orders billed in this period
 	 */
-	private ArrayList<Order> orders;
+	private ArrayList<Order> ordersBilled;
 	
 	
 ////////ATRUBUTES//////////
@@ -28,7 +28,7 @@ public class Period {
 	/**
 	 * Is the name of period and represents registration period
 	 */
-	private String periodName;
+	private int month;
 	/**
 	 * representa el costo de materiales directos de todo el periodo
 	 */
@@ -53,9 +53,9 @@ public class Period {
 	 * 
 	 * para
 	 */
-	public Period(String periodName) {
-		this.periodName = periodName;
-		orders= new ArrayList<Order>();
+	public Period(int periodName) {
+		this.month = periodName;
+		ordersBilled= new ArrayList<Order>();
 	}
 	
 /////////////METHOD////////////
@@ -68,7 +68,7 @@ public class Period {
 		double modTotal = 0;
 		double cifTotal = 0;
 		double cifAplicatedTotal = 0;
-		for (Iterator<Order> iterator = orders.iterator(); iterator.hasNext();) {
+		for (Iterator<Order> iterator = ordersBilled.iterator(); iterator.hasNext();) {
 			Order order = (Order) iterator.next();
 			mdTotal += order.getMD();
 			modTotal += order.getMOD();
@@ -88,14 +88,14 @@ public class Period {
 	 * retorna la lista orders
 	 */
 	public ArrayList<Order> getOrders() {
-		return orders;
+		return ordersBilled;
 	}
 	
 	/**
 	 * retorna el nombre del periodo
 	 */
-	public String getPeriodName() {
-		return periodName;
+	public int getPeriodMonth() {
+		return month;
 	}
 	
 	/**

@@ -2,9 +2,11 @@ package ui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -33,6 +35,9 @@ public class FinishedController {
     @FXML
     void bill(ActionEvent event) {
     	mainController.finishOrder();
+    	Alert a = new Alert(AlertType.INFORMATION);
+		a.setContentText("La orden ha sido terminada correctamente");
+		a.show();
     	//closeButtonAction();
     	
     }

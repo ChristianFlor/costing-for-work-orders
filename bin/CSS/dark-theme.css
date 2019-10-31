@@ -195,7 +195,7 @@
 /*TableView Default*/
 .table-view{
     -fx-background-color: derive(-fx-primary, 10%);
-    -fx-font-size: 16px; 
+    -fx-font-size: 14px; 
     -fx-border-color: derive(-fx-secondary, -60%);
 }
 .table-view:focused{
