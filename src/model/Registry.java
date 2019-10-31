@@ -60,67 +60,15 @@ public class Registry {
 	
 /////////////METHOD////////////
 	
-	/**
-	 * Register a order billed in order completion period
-	 */
-	public boolean changeBilledStatus(String id, int dayF, int monthF, int yearF){
-		int orderI = searchOrder(id);
-		boolean changed = orderI != -1;
-		if(changed) {
-			Order order = ordersFinished.get(orderI);
-			order.setFinish(dayF, monthF, yearF);
-			addOrderBilled(order, monthF-1);
-			ordersFinished.remove(orderI);
-		}
-		return true;
-	}
 	
+	
+	
+
 	/**
 	 * Search a order in ordersNotBilled
 	 * @param id is the code of the order sought
 	 * @return an int represents the position of order sought in the ordersNotBilled, if it does not find returns -1
 	 */
-	public int searchOrder(String id) {
-		int i = -1;
-		int l = ordersNotFinished.size()-1;
-		int s = 0;
-		int m = (s+l)/2;
-		while(s<l) {
-			if(ordersNotFinished.get(m).getId().compareTo(id) == 0) {
-				s = m;
-				l = s;
-			}else if(ordersNotFinished.get(m).getId().compareTo(id) > 0) {
-				l = m-1;
-				m = (s+l)/2;
-			}else{
-				s = m;
-				m = (s+l)/2;
-			}
-		}
-		if(s==l && ordersNotFinished.equals(id)) {
-			i = s;
-		}
-		
-		return i;
-	}
-	
-	/**
-	 * se encarga de crear y agregar una nueva orden a la lista correspondiente, ya sea un periodo especifico
-	 * o en la lista de las ordenes no facturadas
-	 */
-	public void addNewOrder(String id, double md, double mod, double cif, int dayS, int monthS, int yearS, boolean finished, int dayF, int monthF, int yearF) {
-		if(finished) {
-			Order newOrder = new Order(id, md, mod, cif, dayS, monthS, yearS, dayF, monthF, yearF);
-			addOrderFinished(newOrder);
-		}else {
-			Order newOrder = new Order(id, md, mod, cif, dayS, monthS, yearS);
-			addOrderNotFinished(newOrder);
-			//Order newOrder = new Order();
-			//addOrderNB(id, md, mod, cif, dayS, monthS, yearS);
-		}
-			
-		
-	}
 	public void finishedOrder(String id,double md, double mod, double cif, int dayF, int monthF, int yearF ) {
 		
 		for (int i = 0; i < ordersNotFinished.size(); i++) {
@@ -136,6 +84,16 @@ public class Registry {
 			}
 		}
 	}
+	/**
+	 * agrega una orden a la lista de las ordenes que aun no han sido facturadas 
+	 * en orden
+	 * 
+	 */
+
+	/**
+	 * se encarga de crear y agregar una nueva orden a la lista correspondiente, ya sea un periodo especifico
+	 * o en la lista de las ordenes no facturadas
+	 */
 	public void addOrderNF(Order nf) {
 		ordersNotFinished.add(nf);
 		
@@ -146,6 +104,11 @@ public class Registry {
 		
 		//sortByIdOrder();
 	}
+	/**
+	 * Search a order in ordersNotBilled
+	 * @param id is the code of the order sought
+	 * @return an int represents the position of order sought in the ordersNotBilled, if it does not find returns -1
+	 */
 	public void billedOrder(String id) {
 		
 		for (int i = 0; i < ordersFinished.size(); i++) {
@@ -159,6 +122,9 @@ public class Registry {
 			}
 		}
 	}
+	/**
+	 * Register a order billed in order completion period
+	 */
 	public void addOrderB(Order r,int period) {
 		for (int i = 0; i < periods.size(); i++) {
 			if(periods.get(i).getPeriodMonth()==period) {
@@ -176,82 +142,6 @@ public class Registry {
 	 * en orden
 	 * 
 	 */
-	public void addOrderBilled(Order newOrder, int period) {
-		String id = newOrder.getId();
-		boolean added = false;
-		int l = periods.get(period).getOrders().size()-1;
-		ArrayList<Order> orders = periods.get(period).getOrders();
-		int s = 0;
-		int m = (s+l)/2;
-		while(!added) {
-			if(s == l) {
-				if(orders.get(s).getId().compareTo(id) > 0) {
-					orders.add(s, newOrder);
-				}else {
-					orders.add(s+1, newOrder);
-				}
-				added = true;
-			}else if(orders.get(m).getId().compareTo(id) > 0) {
-				l = m-1;
-				m = (s+l)/2;
-			}else{
-				s = m;
-				m = (s+l)/2;
-			}
-		}
-	}
-	
-	/**
-	 * agrega una orden a la lista de las ordenes que aun no han sido facturadas 
-	 * en orden
-	 * 
-	 */
-	public void addOrderNotFinished(Order newOrder) {
-		String id = newOrder.getId();
-		boolean added = false;
-		int l = ordersNotFinished.size()-1;
-		int s = 0;
-		int m = (s+l)/2;
-		while(!added) {
-			if(s == l) {
-				if(ordersNotFinished.get(s).getId().compareTo(id) > 0) {
-					ordersNotFinished.add(s, newOrder);
-				}else {
-					ordersNotFinished.add(s+1, newOrder);
-				}
-				added = true;
-			}else if(ordersNotFinished.get(m).getId().compareTo(id) > 0) {
-				l = m-1;
-				m = (s+l)/2;
-			}else{
-				s = m;
-				m = (s+l)/2;
-			}
-		}
-	}
-	public void addOrderFinished(Order newOrder) {
-		String id = newOrder.getId();
-		boolean added = false;
-		int l = ordersFinished.size()-1;
-		int s = 0;
-		int m = (s+l)/2;
-		while(!added) {
-			if(s == l) {
-				if(ordersFinished.get(s).getId().compareTo(id) > 0) {
-					ordersFinished.add(s, newOrder);
-				}else {
-					ordersFinished.add(s+1, newOrder);
-				}
-				added = true;
-			}else if(ordersFinished.get(m).getId().compareTo(id) > 0) {
-				l = m-1;
-				m = (s+l)/2;
-			}else{
-				s = m;
-				m = (s+l)/2;
-			}
-		}
-	}
 	
 
 /////////////////GET and SET/////////////////////////////

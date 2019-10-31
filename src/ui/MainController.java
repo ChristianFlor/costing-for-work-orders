@@ -1,4 +1,5 @@
 package ui;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Month;
@@ -96,11 +97,11 @@ public class MainController {
 
 	    @FXML
 	    void save(ActionEvent event) {
-	    	/*
+	    	
 	    	try {
-				program.save(getPath());
+				program.save(Company.DATA_PATH);
 				Alert alert = new Alert(AlertType.CONFIRMATION);
-				alert.setContentText("The game was saved successfully");
+				alert.setContentText("La compañia se ha guardado correctamente");
 				alert.show();
 			} catch (FileNotFoundException e) {
 				
@@ -111,7 +112,7 @@ public class MainController {
 			} catch (IOException e) {
 				
 				e.printStackTrace();
-			}*/
+			}
 	    }
 
 	    @FXML
