@@ -93,7 +93,8 @@ public class MainController {
 	private FinishedController finishedController;
 
 	private String idSearch;
-
+	private ObservableList<Order> data;
+	private Company program;
 	@FXML
 	private Label tasaCIF;
 
@@ -124,7 +125,7 @@ public class MainController {
 		try {
 			save();
 			Alert alert = new Alert(AlertType.CONFIRMATION);
-			alert.setContentText("La compaï¿½ia se ha guardado correctamente");
+			alert.setContentText("La compañia se ha guardado correctamente");
 			alert.show();
 		} catch (FileNotFoundException e) {
 
@@ -198,7 +199,7 @@ public class MainController {
     	try {
     	program = new Company(nameCompany.getText(), descripcion.getText(), typeBase.getValue(),Double.parseDouble(valueBase.getText()),Double.parseDouble(cifPresupuestado.getText()));
     	Alert a = new Alert(AlertType.INFORMATION);
-		a.setContentText("La compaï¿½ia: "+nameCompany.getText()+", ha sido creada correctamente");
+		a.setContentText("La compañia: "+nameCompany.getText()+", ha sido creada correctamente");
 		a.show();
 		nameCompany.setEditable(false);
 		descripcion.setEditable(false);
@@ -309,6 +310,7 @@ public class MainController {
 
 		listNOFinished.setItems(data);
 		listNOFinished.getColumns().addAll(id, start, finish, MD, MOD, CIF, CIFApplied);
+		
 		listNOFinished.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		return listNOFinished;
 	}
@@ -345,6 +347,7 @@ public class MainController {
 
 		listIsFinished.setItems(data);
 		listIsFinished.getColumns().addAll(id, start, finish, MD, MOD, CIF, CIFApplied);
+		
 		listIsFinished.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
 		return listIsFinished;
