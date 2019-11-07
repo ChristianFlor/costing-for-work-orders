@@ -98,8 +98,8 @@
                                                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="231.0" minWidth="10.0" prefWidth="136.33331298828125" />
                                                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="231.0" minWidth="0.0" prefWidth="10.3333740234375" />
                                                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.66665649414062" minWidth="10.0" prefWidth="175.6666259765625" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="231.0" minWidth="8.333343505859375" prefWidth="9.66668701171875" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="234.0" minWidth="10.0" prefWidth="200.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="231.0" minWidth="8.333343505859375" prefWidth="30.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="234.0" minWidth="10.0" prefWidth="180.0" />
                                                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="234.0" minWidth="10.0" prefWidth="164.0" />
                                                    </columnConstraints>
                                                    <rowConstraints>
@@ -113,12 +113,12 @@
                                                             <Font name="Verdana" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label text="Material Directo:" GridPane.columnIndex="4">
+                                                      <Label text="Material Directo:" GridPane.rowIndex="1">
                                                          <font>
                                                             <Font name="Verdana" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label text="Base real:" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                                      <Label text="Base real:" GridPane.columnIndex="4">
                                                          <font>
                                                             <Font name="Verdana" size="14.0" />
                                                          </font>
@@ -128,22 +128,22 @@
                                                             <Font size="5.0" />
                                                          </font>
                                                       </TextField>
-                                                      <TextField fx:id="CIFOrder" prefHeight="32.0" prefWidth="164.0" style="-fx-background-color: white; -fx-text-fill: black;" styleClass="context-menu" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                                                      <TextField fx:id="CIFOrder" prefHeight="32.0" prefWidth="164.0" style="-fx-background-color: white; -fx-text-fill: black;" styleClass="context-menu" GridPane.columnIndex="5">
                                                          <font>
                                                             <Font size="5.0" />
                                                          </font>
                                                       </TextField>
-                                                      <TextField fx:id="MODOrder" prefHeight="37.0" prefWidth="95.0" style="-fx-text-fill: black; -fx-background-color: white;" styleClass="context-menu" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                                      <TextField fx:id="MODOrder" prefHeight="37.0" prefWidth="95.0" promptText="\$" style="-fx-text-fill: black; -fx-background-color: white;" styleClass="context-menu" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                                          <font>
                                                             <Font size="5.0" />
                                                          </font>
                                                       </TextField>
-                                                      <TextField fx:id="MDOrder" prefHeight="37.0" prefWidth="95.0" style="-fx-background-color: white; -fx-text-fill: black;" styleClass="context-menu" GridPane.columnIndex="5">
+                                                      <TextField fx:id="MDOrder" prefHeight="37.0" prefWidth="95.0" promptText="\$" style="-fx-background-color: white; -fx-text-fill: black;" styleClass="context-menu" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                                          <font>
                                                             <Font size="5.0" />
                                                          </font>
                                                       </TextField>
-                                                      <Label text="Mano obra directa:" GridPane.rowIndex="1">
+                                                      <Label text="Mano obra directa:" GridPane.rowIndex="2">
                                                          <font>
                                                             <Font name="Verdana" size="14.0" />
                                                          </font>
@@ -153,13 +153,19 @@
                                                             <Font name="Verdana" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <DatePicker fx:id="fechainicio" prefHeight="38.0" prefWidth="164.0" style="-fx-text-fill: black;" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                                                      <DatePicker fx:id="fechainicio" prefHeight="38.0" prefWidth="164.0" style="-fx-text-fill: black;" GridPane.columnIndex="5" GridPane.rowIndex="1" />
                                                       <TextField fx:id="CIFAplicadoOrder" prefHeight="37.0" prefWidth="95.0" style="-fx-text-fill: black; -fx-background-color: white;" styleClass="context-menu" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                                          <font>
                                                             <Font size="5.0" />
                                                          </font>
                                                       </TextField>
-                                                      <Label text="Fecha Inicio:" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                                                      <Label text="Fecha Inicio:" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                                         <font>
+                                                            <Font name="Verdana" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <ComboBox fx:id="isFinished" prefHeight="39.0" prefWidth="159.0" promptText="Orden terminada:" style="-fx-background-color: white;" styleClass="context-menu" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                                                      <Label text="Orden Terminada:" GridPane.columnIndex="4" GridPane.rowIndex="2">
                                                          <font>
                                                             <Font name="Verdana" size="14.0" />
                                                          </font>
@@ -173,10 +179,8 @@
                                                 <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                              </padding>
                                              <children>
-                                                <GridPane alignment="CENTER_RIGHT" prefHeight="71.0" prefWidth="459.0">
+                                                <GridPane alignment="CENTER_RIGHT" prefHeight="65.0" prefWidth="328.0">
                                                    <columnConstraints>
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="231.0" minWidth="10.0" prefWidth="157.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="231.0" minWidth="0.0" prefWidth="30.0" />
                                                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.66665649414062" minWidth="10.0" prefWidth="75.3333740234375" />
                                                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="242.66668701171875" minWidth="7.33331298828125" prefWidth="12.0" />
                                                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="369.99993896484375" minWidth="10.0" prefWidth="170.0" />
@@ -185,13 +189,12 @@
                                                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <Label text="Fecha Fin:" GridPane.columnIndex="2">
+                                                      <Label text="Fecha Fin:">
                                                          <font>
                                                             <Font name="Verdana" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <ComboBox fx:id="isFinished" prefHeight="39.0" prefWidth="159.0" promptText="Orden terminada:" style="-fx-background-color: white;" styleClass="context-menu" />
-                                                      <DatePicker fx:id="fechaFin" style="-fx-text-fill: black;" GridPane.columnIndex="4" />
+                                                      <DatePicker fx:id="fechaFin" style="-fx-text-fill: black;" GridPane.columnIndex="2" />
                                                    </children>
                                                 </GridPane>
                                              </children>
@@ -229,16 +232,17 @@
                                              <children>
                                                 <GridPane alignment="CENTER_RIGHT" prefHeight="263.0" prefWidth="574.0">
                                                    <columnConstraints>
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="231.0" minWidth="10.0" prefWidth="97.33333587646484" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="231.0" minWidth="0.0" prefWidth="23.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.66665649414062" minWidth="10.0" prefWidth="151.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="231.0" minWidth="8.333343505859375" prefWidth="12.333343505859375" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="234.0" minWidth="10.0" prefWidth="142.33334350585938" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="234.0" minWidth="10.0" prefWidth="150.66665649414062" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="231.0" minWidth="10.0" prefWidth="139.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="231.0" minWidth="0.0" prefWidth="7.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.66665649414062" minWidth="10.0" prefWidth="136.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="231.0" minWidth="8.0" prefWidth="12.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="234.0" minWidth="10.0" prefWidth="127.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="234.0" minWidth="10.0" prefWidth="153.0" />
                                                    </columnConstraints>
                                                    <rowConstraints>
-                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints maxHeight="126.0" minHeight="10.0" prefHeight="108.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints maxHeight="155.0" minHeight="10.0" prefHeight="87.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints maxHeight="155.0" minHeight="10.0" prefHeight="71.0" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
                                                       <Label text="Name: ">
@@ -251,7 +255,7 @@
                                                             <Font name="Verdana" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label text="CIF Presupuestado:" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                                      <Label text="CIF Presupuestado:" GridPane.rowIndex="2">
                                                          <font>
                                                             <Font name="Verdana" size="14.0" />
                                                          </font>
@@ -261,18 +265,33 @@
                                                             <Font size="5.0" />
                                                          </font>
                                                       </TextField>
-                                                      <TextField fx:id="cifPresupuestado" prefHeight="40.0" prefWidth="151.0" style="-fx-background-color: white; -fx-text-fill: black;" styleClass="context-menu" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                                                      <TextField fx:id="cifPresupuestado" prefHeight="40.0" prefWidth="151.0" promptText="\$" style="-fx-background-color: white; -fx-text-fill: black;" styleClass="context-menu" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                                          <font>
                                                             <Font size="5.0" />
                                                          </font>
                                                       </TextField>
-                                                      <TextArea fx:id="descripcion" prefHeight="101.0" prefWidth="141.0" style="-fx-background-color: white;" styleClass="context-menu" GridPane.columnIndex="5" />
-                                                      <ComboBox fx:id="typeBase" prefHeight="25.0" prefWidth="122.0" promptText="Tipo Base" style="-fx-background-color: white;" styleClass="context-menu" GridPane.rowIndex="1" />
-                                                      <TextField fx:id="valueBase" prefHeight="37.0" prefWidth="95.0" style="-fx-background-color: white; -fx-text-fill: black;" styleClass="context-menu" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                                      <TextArea fx:id="descripcion" prefHeight="84.0" prefWidth="135.0" style="-fx-background-color: white;" styleClass="context-menu" GridPane.columnIndex="5" />
+                                                      <ComboBox fx:id="typeBase" prefHeight="33.0" prefWidth="106.0" promptText="Tipo Base" style="-fx-background-color: white;" styleClass="context-menu" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                                                      <TextField fx:id="valueBase" prefHeight="37.0" prefWidth="95.0" style="-fx-background-color: white; -fx-text-fill: black;" styleClass="context-menu" GridPane.columnIndex="5" GridPane.rowIndex="1">
                                                          <font>
                                                             <Font size="5.0" />
                                                          </font>
                                                       </TextField>
+                                                      <Label prefHeight="18.0" prefWidth="102.0" text="Tipo de Base:" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                                         <font>
+                                                            <Font name="Verdana" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label text="Tasa CIF:" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                                                         <font>
+                                                            <Font name="Verdana" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="tasaCIF" text="000$" GridPane.columnIndex="5" GridPane.rowIndex="2">
+                                                         <font>
+                                                            <Font name="Verdana" size="14.0" />
+                                                         </font>
+                                                      </Label>
                                                    </children>
                                                 </GridPane>
                                              </children>
@@ -283,7 +302,6 @@
                                              </font></Button>
                                        </children>
                                     </VBox>
-                                    <Label fx:id="tasaCIF" text="tasa CIF: " />
                                     <Button mnemonicParsing="false" onAction="#clean" text="Limpiar" />
                                  </children>
                                  <padding>
@@ -409,29 +427,30 @@
                      <content>
                         <BorderPane prefHeight="452.0" prefWidth="805.0">
                            <center>
-                              <VBox fillWidth="false" focusTraversable="true" prefHeight="586.0" prefWidth="685.0" spacing="5.0" BorderPane.alignment="CENTER">
+                              <VBox alignment="CENTER" prefHeight="547.0" prefWidth="1121.0" style="-fx-border-color: #4285F4; -fx-border-width: 2; -fx-border-radius: 15;" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Separator prefHeight="14.0" prefWidth="392.0" visible="false" />
-                                    <VBox alignment="CENTER" prefHeight="532.0" prefWidth="1348.0" style="-fx-border-color: #4285F4; -fx-border-width: 2; -fx-border-radius: 15;">
-                                       <children>
-                                          <Label contentDisplay="CENTER" prefHeight="30.0" prefWidth="337.0" text="Lista ordenes facturadas">
-                                             <font>
-                                                <Font name="Verdana Bold" size="24.0" />
-                                             </font>
-                                          </Label>
-                                          <ScrollPane fx:id="tableBilled" prefHeight="499.0" prefWidth="1344.0">
-                                            <content>
-                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="494.0" prefWidth="1352.0" />
-                                            </content>
-                                          </ScrollPane>
-                                       </children>
-                                    </VBox>
+                                    <Label contentDisplay="CENTER" prefHeight="30.0" prefWidth="337.0" text="Lista ordenes facturadas">
+                                       <font>
+                                          <Font name="Verdana Bold" size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <ScrollPane fx:id="tableBilled" prefHeight="499.0" prefWidth="1344.0">
+                                      <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="461.0" prefWidth="996.0" />
+                                      </content>
+                                    </ScrollPane>
                                  </children>
-                                 <padding>
-                                    <Insets left="8.0" />
-                                 </padding>
                               </VBox>
                            </center>
+                           <left>
+                              <Separator prefHeight="199.0" prefWidth="143.0" visible="false" BorderPane.alignment="CENTER" />
+                           </left>
+                           <right>
+                              <Separator prefHeight="120.0" prefWidth="200.0" visible="false" BorderPane.alignment="CENTER" />
+                           </right>
+                           <top>
+                              <Separator orientation="VERTICAL" prefHeight="12.0" prefWidth="207.0" visible="false" BorderPane.alignment="CENTER" />
+                           </top>
                         </BorderPane>
                      </content>
                   </Tab>

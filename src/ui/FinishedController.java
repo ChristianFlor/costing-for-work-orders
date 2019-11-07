@@ -14,23 +14,20 @@ public class FinishedController {
 	
 	private MainController mainController;
 
-    @FXML
-    private ImageView foundCompImg;
+	 @FXML
+	    private ImageView foundCompImg;
 
-    @FXML
-    private TextField MDBill;
+	    @FXML
+	    private TextField MDBill;
 
-    @FXML
-    private TextField CIFAPBill;
+	    @FXML
+	    private TextField CIFBill;
 
-    @FXML
-    private TextField CIFBill;
+	    @FXML
+	    private TextField MODBill;
 
-    @FXML
-    private TextField MODBill;
-
-    @FXML
-    private DatePicker fechaFinBill;
+	    @FXML
+	    private DatePicker fechaFinBill;
 
     @FXML
     void bill(ActionEvent event) {
@@ -48,10 +45,6 @@ public class FinishedController {
     
     public double getMDBill() {
     	return Double.parseDouble(MDBill.getText());
-    }
-    
-    public double getCIFAPBill() {
-    	return Double.parseDouble(CIFAPBill.getText());
     }
     
     public double getCIFBill() {

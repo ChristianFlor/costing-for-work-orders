@@ -6,6 +6,7 @@
  */
 package model;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,7 +14,7 @@ import java.util.Date;
 /**
  * This class represents a date
  */
-public class DateOrder implements Comparable<DateOrder>{
+public class DateOrder implements Comparable<DateOrder>, Serializable{
 
 ////////ATRUBUTES//////////
 	

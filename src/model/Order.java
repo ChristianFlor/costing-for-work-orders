@@ -6,11 +6,13 @@
  */
 package model;
 
+import java.io.Serializable;
+
 /**
  * @author ASUS
  *
  */
-public class Order implements Comparable<Order> {
+public class Order implements Comparable<Order>, Serializable {
 
 ////////RELATIONS//////////
 	
