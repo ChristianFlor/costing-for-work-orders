@@ -268,7 +268,7 @@ public class MainController {
 			tableBilled.setContent(listBilled);
 
 			Alert a = new Alert(AlertType.INFORMATION);
-			a.setContentText("La orden: " + idOrder.getText() + ", ha sido a�adida correctamente");
+			a.setContentText("La orden: " + idOrder.getText() + ", ha sido aadida correctamente");
 			a.show();
 		} catch (Exception e) {
 			Alert a = new Alert(AlertType.ERROR);
@@ -311,7 +311,7 @@ public class MainController {
 		listNOFinished.setItems(data);
 		listNOFinished.getColumns().addAll(id, start, finish, MD, MOD, CIF, CIFApplied);
 		
-		listNOFinished.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+		listNOFinished.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
 		return listNOFinished;
 	}
 
@@ -348,7 +348,7 @@ public class MainController {
 		listIsFinished.setItems(data);
 		listIsFinished.getColumns().addAll(id, start, finish, MD, MOD, CIF, CIFApplied);
 		
-		listIsFinished.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+		listIsFinished.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
 
 		return listIsFinished;
 	}
@@ -385,7 +385,7 @@ public class MainController {
 
 		listBilled.setItems(data);
 		listBilled.getColumns().addAll(id, start, finish, MD, MOD, CIF, CIFApplied);
-		listBilled.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+		listBilled.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
 
 		return listBilled;
 	}
