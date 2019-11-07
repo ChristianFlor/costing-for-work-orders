@@ -193,7 +193,12 @@ public class MainController {
 		descripcion.setEditable(false);
 		valueBase.setEditable(false);
 		cifPresupuestado.setEditable(false);
-		tasaCIF.setText(tasaCIF.getText()+program.getCIF());
+		if(typeBase.getValue().equals("MONEY")) {
+			tasaCIF.setText(program.getCIF()+"$");
+		}else {
+			tasaCIF.setText(program.getCIF()+"");
+		}
+		
     	}catch(Exception e) {
     		Alert a = new Alert(AlertType.ERROR);
     		a.setContentText("Digite los valores validos");

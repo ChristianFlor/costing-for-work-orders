@@ -12,6 +12,8 @@ import javafx.stage.Stage;
 
 public class FinishedController {
 	
+	 
+
 	private MainController mainController;
 
     @FXML
@@ -21,10 +23,8 @@ public class FinishedController {
     private TextField MDBill;
 
     @FXML
-    private TextField CIFAPBill;
-
-    @FXML
     private TextField CIFBill;
+
 
     @FXML
     private TextField MODBill;
@@ -50,13 +50,10 @@ public class FinishedController {
     	return Double.parseDouble(MDBill.getText());
     }
     
-    public double getCIFAPBill() {
-    	return Double.parseDouble(CIFAPBill.getText());
-    }
-    
     public double getCIFBill() {
     	return Double.parseDouble(CIFBill.getText());
     }
+
     
     public double getMODBill() {
     	return Double.parseDouble(MODBill.getText());
