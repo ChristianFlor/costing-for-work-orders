@@ -205,10 +205,10 @@ public class MainController {
 		descripcion.setEditable(false);
 		valueBase.setEditable(false);
 		cifPresupuestado.setEditable(false);
-		if(typeBase.getValue().equals("MONEY")) {
-			tasaCIF.setText(program.getCIF()+"$");
+		if(typeBase.getValue().equals("DINERO")) {
+			tasaCIF.setText(String.format("%.3f", program.getCIF())+"$");
 		}else {
-			tasaCIF.setText(program.getCIF()+"");
+			tasaCIF.setText(String.format("%.3f", program.getCIF())+"");
 		}
 		
     	}catch(Exception e) {
@@ -225,7 +225,7 @@ public class MainController {
 		valueBase.setEditable(true); valueBase.setText("");
 		cifPresupuestado.setEditable(true); cifPresupuestado.setText("");
 		Alert a = new Alert(AlertType.INFORMATION);
-		a.setContentText("Cree la nueva compaï¿½ia");
+		a.setContentText("Cree la nueva compañia");
 		a.show();
 	}
 
@@ -418,7 +418,7 @@ public class MainController {
 
 	public void initialize() throws FileNotFoundException, IOException {
 		isFinished.getItems().addAll("SI", "NO");
-		typeBase.getItems().addAll("MONEY", "HOURS");
+		typeBase.getItems().addAll("DINERO", "HORAS");
 		fechaFin.setStyle("-fx-text-fill: black");
 
 		File file = new File(Company.DATA_PATH);

@@ -155,10 +155,7 @@ public class Registry implements Serializable{
 		}
 		//sortByIdOrder();
 	}
-	public void sortByIdOrder(){
-		Comparator<Order> orderComparator = new IdOrderComparator();
-		Collections.sort(ordersNotFinished, orderComparator);	
-	}
+
 	/**
 	 * agrega una orden a la lista de ordenes del periodo que le corresponde
 	 * en orden

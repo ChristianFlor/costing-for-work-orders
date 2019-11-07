@@ -160,7 +160,8 @@ public class Order implements Comparable<Order>, Serializable {
 	 * retorna el cif aplicado de la orden
 	 */
 	public double getCIFApplied() {
-		return CIFApplied;
+		
+		return (double)Math.round(CIFApplied * 100d) / 100;
 	}
 
 

@@ -69,7 +69,7 @@
          <center>
             <TabPane prefHeight="384.0" prefWidth="779.0" styleClass="jfx-hamburger-icon" stylesheets="@../CSS/dark-theme.css" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
               <tabs>
-                  <Tab text="DATA">
+                  <Tab text="DATOS">
                      <content>
                         <BorderPane prefHeight="452.0" prefWidth="805.0">
                            <right>
@@ -436,21 +436,24 @@
                                     </Label>
                                     <ScrollPane fx:id="tableBilled" prefHeight="499.0" prefWidth="1344.0">
                                       <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="461.0" prefWidth="996.0" />
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="477.0" prefWidth="740.0" />
                                       </content>
                                     </ScrollPane>
                                  </children>
                               </VBox>
                            </center>
                            <left>
-                              <Separator prefHeight="199.0" prefWidth="143.0" visible="false" BorderPane.alignment="CENTER" />
+                              <Separator prefHeight="199.0" prefWidth="313.0" visible="false" BorderPane.alignment="CENTER" />
                            </left>
                            <right>
-                              <Separator prefHeight="120.0" prefWidth="200.0" visible="false" BorderPane.alignment="CENTER" />
+                              <Separator prefHeight="120.0" prefWidth="288.0" visible="false" BorderPane.alignment="CENTER" />
                            </right>
                            <top>
                               <Separator orientation="VERTICAL" prefHeight="12.0" prefWidth="207.0" visible="false" BorderPane.alignment="CENTER" />
                            </top>
+                           <bottom>
+                              <Separator orientation="VERTICAL" prefHeight="11.0" prefWidth="251.0" visible="false" BorderPane.alignment="CENTER" />
+                           </bottom>
                         </BorderPane>
                      </content>
                   </Tab>
