@@ -13,14 +13,15 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
+import java.io.Serializable;
 
 /**
  * This class represents a company
  */
-public class Company {
+public class Company implements Serializable{
 	
 ////////CONTANTS//////////
-	public static final String DATA_PATH = "data"+File.separator+"companies.dat";
+	public static final String DATA_PATH = "./data/companies.txt";
 	/**
 	 * It is a constant for define the base term (if it is defined for money)
 	 */
@@ -76,18 +77,6 @@ public class Company {
 		this.baseType = baseType;
 		this.budgtedCif = budgtedCif;
 		CIF = budgtedCif/base;
-	}
-	
-	public void save(String path) throws IOException {
-		PrintWriter pw = new PrintWriter(new File(path));
-		String data = "name"+ name+"\n"+"description: "+description;
-		
-		pw.print(data);
-		pw.close();
-		File f = new File(DATA_PATH);
-		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f));
-		oos.writeObject(registry);
-		oos.close();
 	}
 	
 /////////////////GET and SET/////////////////////////////

@@ -6,6 +6,7 @@
  */
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -15,7 +16,7 @@ import java.util.List;
 /**
  * This class represents the company order record
  */
-public class Registry {
+public class Registry implements Serializable{
 
 ////////RELATIONS//////////
 	

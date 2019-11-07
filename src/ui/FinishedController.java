@@ -16,11 +16,11 @@ public class FinishedController {
 
 	private MainController mainController;
 
-    @FXML
-    private ImageView foundCompImg;
+	 @FXML
+	    private ImageView foundCompImg;
 
-    @FXML
-    private TextField MDBill;
+	    @FXML
+	    private TextField MDBill;
 
     @FXML
     private TextField CIFBill;
@@ -28,9 +28,6 @@ public class FinishedController {
 
     @FXML
     private TextField MODBill;
-
-    @FXML
-    private DatePicker fechaFinBill;
 
     @FXML
     void bill(ActionEvent event) {

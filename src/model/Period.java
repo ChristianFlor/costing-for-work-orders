@@ -6,6 +6,7 @@
  */
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -13,7 +14,7 @@ import java.util.Iterator;
  * This class represents a period of registry
  *
  */
-public class Period {
+public class Period implements Serializable{
 	
 ////////RELATIONS//////////
 	
