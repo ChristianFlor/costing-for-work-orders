@@ -431,14 +431,11 @@ public class MainController {
 		TableColumn<Order, String> MOD = new TableColumn<Order, String>("MOD");
 		MOD.setCellValueFactory(new PropertyValueFactory<Order, String>("MOD"));
 
-		TableColumn<Order, String> CIF = new TableColumn<Order, String>("CIF");
-		CIF.setCellValueFactory(new PropertyValueFactory<Order, String>("CIF"));
-
-		TableColumn<Order, String> CIFApplied = new TableColumn<Order, String>("CIF Apli");
+		TableColumn<Order, String> CIFApplied = new TableColumn<Order, String>("BASE REAL");
 		CIFApplied.setCellValueFactory(new PropertyValueFactory<Order, String>("CIFApplied"));
 
 		listNOFinished.setItems(data);
-		listNOFinished.getColumns().addAll(id, start, finish, MD, MOD, CIF, CIFApplied);
+		listNOFinished.getColumns().addAll(id, start, finish, MD, MOD, CIFApplied);
 		
 		listNOFinished.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
 		return listNOFinished;
@@ -471,14 +468,12 @@ public class MainController {
 		TableColumn<Order, String> MOD = new TableColumn<Order, String>("MOD");
 		MOD.setCellValueFactory(new PropertyValueFactory<Order, String>("MOD"));
 
-		TableColumn<Order, String> CIF = new TableColumn<Order, String>("CIF");
-		CIF.setCellValueFactory(new PropertyValueFactory<Order, String>("CIF"));
 
-		TableColumn<Order, String> CIFApplied = new TableColumn<Order, String>("CIF Apli");
+		TableColumn<Order, String> CIFApplied = new TableColumn<Order, String>("BASE REAL");
 		CIFApplied.setCellValueFactory(new PropertyValueFactory<Order, String>("CIFApplied"));
 
 		listIsFinished.setItems(data);
-		listIsFinished.getColumns().addAll(id, start, finish, MD, MOD, CIF, CIFApplied);
+		listIsFinished.getColumns().addAll(id, start, finish, MD, MOD, CIFApplied);
 		
 		listIsFinished.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
 
@@ -512,14 +507,12 @@ public class MainController {
 		TableColumn<Order, String> MOD = new TableColumn<Order, String>("MOD");
 		MOD.setCellValueFactory(new PropertyValueFactory<Order, String>("MOD"));
 
-		TableColumn<Order, String> CIF = new TableColumn<Order, String>("CIF");
-		CIF.setCellValueFactory(new PropertyValueFactory<Order, String>("CIF"));
 
-		TableColumn<Order, String> CIFApplied = new TableColumn<Order, String>("CIF Apli");
+		TableColumn<Order, String> CIFApplied = new TableColumn<Order, String>("BASE REAL");
 		CIFApplied.setCellValueFactory(new PropertyValueFactory<Order, String>("CIFApplied"));
 
 		listBilled.setItems(data);
-		listBilled.getColumns().addAll(id, start, finish, MD, MOD, CIF, CIFApplied);
+		listBilled.getColumns().addAll(id, start, finish, MD, MOD, CIFApplied);
 		listBilled.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
 
 		return listBilled;
