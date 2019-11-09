@@ -46,6 +46,11 @@ public class DateOrder implements Comparable<DateOrder>, Serializable{
 	public String toString() {
 		return year+"-"+addZero(month)+"-"+addZero(day);
 	}
+	
+	/**
+	 * 
+	 * @param
+	 */
 	public String addZero(int n) {
 		String msg="";
 		if(n<10) {
@@ -79,10 +84,16 @@ public class DateOrder implements Comparable<DateOrder>, Serializable{
 	public int getYear() {
 		return year;
 	}
-
+	/**
+	 * This class represents
+	 */
 	public String compare() {
 		return year+"-"+month+"-"+day;
 	}
+	
+	/**
+	 * This class represents
+	 */
 	@Override
 	public int compareTo(DateOrder o){
 		int comparation = 0;

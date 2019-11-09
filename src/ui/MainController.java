@@ -1,3 +1,9 @@
+/**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Icesi University (Cali - Colombia)
+ * @author Natalia Isabel Gonzalez Murillo <natalia.gonzalez3@correo.icesi.edu.co>
+ * @author Christian David Flor Astudillo <christian.flor1@correo.icesi.edu.co>
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
 package ui;
 
 import java.io.File;
@@ -35,79 +41,164 @@ import javafx.stage.Stage;
 import model.Company;
 import model.Order;
 
+/**
+ * This class represents
+ */
 public class MainController {
+	
+	/**
+	 * 
+	 */
 	@FXML
 	private TextField nameCompany;
-
+	
+	/**
+	 * 
+	 */
 	@FXML
 	private TextField cifPresupuestado;
 
+	/**
+	 * 
+	 */
 	@FXML
 	private TextArea descripcion;
 
+	/**
+	 * 
+	 */
 	@FXML
 	private ComboBox<String> typeBase;
 
+	/**
+	 * 
+	 */
 	@FXML
 	private TextField valueBase;
-
+	
+	/**
+	 * 
+	 */
 	@FXML
 	private TextField idOrder;
 
+	/**
+	 * 
+	 */
 	@FXML
 	private TextField CIFOrder;
 
+	/**
+	 * 
+	 */
 	@FXML
 	private TextField MODOrder;
 
+	/**
+	 * 
+	 */
 	@FXML
 	private TextField MDOrder;
 
+	/**
+	 * 
+	 */
 	@FXML
 	private TextField CIFAplicadoOrder;
 
+	/**
+	 * 
+	 */
 	@FXML
 	private DatePicker fechainicio;
 
+	/**
+	 * 
+	 */
 	@FXML
 	private ComboBox<String> isFinished;
 
+	/**
+	 * 
+	 */
 	@FXML
 	private DatePicker fechaFin;
 
+	/**
+	 * 
+	 */
 	@FXML
 	private ScrollPane tableFinished;
-
+	
+	/**
+	 * 
+	 */
 	@FXML
 	private TextField idFinished;
 
+	/**
+	 * 
+	 */
 	@FXML
 	private ScrollPane tableNOFinished;
 
+	/**
+	 * 
+	 */
 	@FXML
 	private TextField idNOFinished;
 
+	/**
+	 * 
+	 */
 	@FXML
 	private ScrollPane tableBilled;
 
+	/**
+	 * 
+	 */
 	private FinishedController finishedController;
 
+	/**
+	 * 
+	 */
 	private String idSearch;
+	
+	/**
+	 * 
+	 */
 	private ObservableList<Order> data;
+
+	/**
+	 * 
+	 */
 	private Company program;
+	
+	/**
+	 * 
+	 */
 	@FXML
 	private Label tasaCIF;
 
+	/**
+	 * 
+	 */
 	@FXML
 	void aboutProgram(ActionEvent event) {
 
 	}
 
+	/**
+	 * 
+	 */
 	@FXML
 	void exit(ActionEvent event) {
 		((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
 	}
 
+	/**
+	 * 
+	 */
 	private void save() throws IOException {
 		try {
 			FileOutputStream fos = new FileOutputStream(Company.DATA_PATH);
@@ -119,6 +210,9 @@ public class MainController {
 		}
 	}
 
+	/**
+	 * 
+	 */
 	@FXML
 	void save(ActionEvent event) {
 
@@ -139,6 +233,9 @@ public class MainController {
 		}
 	}
 
+	/**
+	 * 
+	 */
 	@FXML
 	void searchOrderFinished(ActionEvent event) {
 		idSearch = idFinished.getText();
@@ -155,6 +252,9 @@ public class MainController {
 
 	}
 
+	/**
+	 * 
+	 */
 	@FXML
 	void searchOrder(ActionEvent event) {
 		try {
@@ -171,6 +271,9 @@ public class MainController {
 		idSearch = idNOFinished.getText();
 	}
 
+	/**
+	 * 
+	 */
 	public void finishOrder() {
 		LocalDate periodFinal = finishedController.getFechaFinBill().getValue();
 		Month pF = periodFinal.getMonth();
@@ -190,10 +293,25 @@ public class MainController {
 	}
 
 /////////////////////////////////////////////
+	
+	/**
+	 * 
+	 */
 	private TableView<Order> listNOFinished;
+	
+	/**
+	 * 
+	 */
 	private TableView<Order> listIsFinished;
+	
+	/**
+	 * 
+	 */
 	private TableView<Order> listBilled;
 
+	/**
+	 * 
+	 */
     @FXML
     void createCompany(ActionEvent event) {
     	try {
@@ -218,6 +336,10 @@ public class MainController {
     	}
     	
     }
+    
+    /**
+	 * 
+	 */
     @FXML
     void clean(ActionEvent event) {
     	nameCompany.setEditable(true); nameCompany.setText("");
@@ -229,6 +351,9 @@ public class MainController {
 		a.show();
 	}
 
+    /**
+	 * 
+	 */
 	@FXML
 	void createOrder(ActionEvent event) {
 		try {
@@ -268,16 +393,20 @@ public class MainController {
 			tableBilled.setContent(listBilled);
 
 			Alert a = new Alert(AlertType.INFORMATION);
-			a.setContentText("La orden: " + idOrder.getText() + ", ha sido aadida correctamente");
+			a.setContentText("La orden: " + idOrder.getText() + ", ha sido agregada correctamente");
 			a.show();
 		} catch (Exception e) {
 			Alert a = new Alert(AlertType.ERROR);
 			a.setContentText("Cree la compa�ia");
 			a.show();
 		}
+		
 
 	}
 
+	/**
+	 * 
+	 */
 	private TableView<Order> createTableNOFinished() {
 		listNOFinished = new TableView<Order>();
 		data = createDataNOFinished();
@@ -315,6 +444,9 @@ public class MainController {
 		return listNOFinished;
 	}
 
+	/**
+	 * 
+	 */
 	private TableView<Order> createTableFinished() {
 		listIsFinished = new TableView<Order>();
 		data = createDataFinished();
@@ -353,6 +485,9 @@ public class MainController {
 		return listIsFinished;
 	}
 
+	/**
+	 * 
+	 */
 	private TableView<Order> createTableBilled() {
 		listBilled = new TableView<Order>();
 		data = createDataBilled();
@@ -390,6 +525,9 @@ public class MainController {
 		return listBilled;
 	}
 
+	/**
+	 * 
+	 */
 	private ObservableList<Order> createDataFinished() {
 		data = FXCollections.observableArrayList();
 		data.addAll(program.getRegistry().getOrdersFinished());
@@ -397,6 +535,9 @@ public class MainController {
 		return data;
 	}
 
+	/**
+	 * 
+	 */
 	private ObservableList<Order> createDataNOFinished() {
 		data = FXCollections.observableArrayList();
 		data.addAll(program.getRegistry().getOrdersNotFinished());
@@ -404,6 +545,9 @@ public class MainController {
 		return data;
 	}
 
+	/**
+	 * 
+	 */
 	private ObservableList<Order> createDataBilled() {
 		data = FXCollections.observableArrayList();
 
@@ -416,6 +560,9 @@ public class MainController {
 		return data;
 	}
 
+	/**
+	 * 
+	 */
 	public void initialize() throws FileNotFoundException, IOException {
 		isFinished.getItems().addAll("SI", "NO");
 		typeBase.getItems().addAll("DINERO", "HORAS");
@@ -428,11 +575,16 @@ public class MainController {
 			try {
 				
 				program = (Company) entrada.readObject();
-				//System.out.println("sii");
+				System.out.println("sii");
 				entrada.close();
-				createDataFinished();
-				createDataNOFinished();
-				createDataBilled();
+				listNOFinished = createTableNOFinished();
+				listIsFinished = createTableFinished();
+				listBilled = createTableBilled();
+
+				tableNOFinished.setContent(listNOFinished);
+				tableFinished.setContent(listIsFinished);
+				tableBilled.setContent(listBilled);
+
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

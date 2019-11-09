@@ -60,7 +60,9 @@ public class Company implements Serializable{
 	 * Is the budget CIF
 	 */
 	private double budgtedCif;
-	
+	/**
+	 * Is the CIF
+	 */
 	private double CIF;
 
 ////////CONSTRUCTOR//////////
@@ -80,7 +82,10 @@ public class Company implements Serializable{
 	}
 	
 /////////////////GET and SET/////////////////////////////
-
+	
+	/**
+	 * @return the company's registry
+	 */
 	public double getCIF() {
 		return CIF;
 	}

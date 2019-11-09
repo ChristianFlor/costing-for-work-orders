@@ -12,7 +12,6 @@ import java.util.Iterator;
 
 /**
  * This class represents a period of registry
- *
  */
 public class Period implements Serializable{
 	

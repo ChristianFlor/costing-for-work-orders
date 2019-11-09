@@ -62,6 +62,9 @@ public class Registry implements Serializable{
 	
 /////////////METHOD////////////
 	
+	/**
+	 * 
+	 */
 	public void calculateCIFAplicatedOrdersNotFinished(double tasa) {
 		
 		for (Iterator<Order> iterator = ordersNotFinished.iterator(); iterator.hasNext();) {
@@ -70,12 +73,21 @@ public class Registry implements Serializable{
 		}
 	}
 	
+	/**
+	 * 
+	 * @param
+	 */
 	public void calculateCIFAplicatedOrdersFinished(double tasa) {
 		for (Iterator<Order> iterator = ordersFinished.iterator(); iterator.hasNext();) {
 			Order order = (Order) iterator.next();
 			order.calculateCIFApplied(tasa);
 		}
 	}
+	
+	/**
+	 * 
+	 * @param
+	 */
 	public void calculateCIFAplicatedOrdersBiled(double tasa) {
 		for (int i = 0; i < periods.size(); i++) {
 			for (Iterator<Order> iterator = periods.get(i).getOrders().iterator(); iterator.hasNext();) {
@@ -116,11 +128,20 @@ public class Registry implements Serializable{
 	 * se encarga de crear y agregar una nueva orden a la lista correspondiente, ya sea un periodo especifico
 	 * o en la lista de las ordenes no facturadas
 	 */
+	/**
+	 * 
+	 * @param
+	 */
 	public void addOrderNF(Order nf) {
 		ordersNotFinished.add(nf);
 		
 		//sortByIdOrder();
 	}
+	
+	/**
+	 * 
+	 * @param
+	 */
 	public void addOrderF(Order f) {
 		ordersFinished.add(f);
 		
@@ -147,6 +168,10 @@ public class Registry implements Serializable{
 	/**
 	 * Register a order billed in order completion period
 	 */
+	/**
+	 * 
+	 * @param
+	 */
 	public void addOrderB(Order r,int period) {
 		for (int i = 0; i < periods.size(); i++) {
 			if(periods.get(i).getPeriodMonth()==period) {
@@ -171,7 +196,10 @@ public class Registry implements Serializable{
 	public List<Period> getPeriods() {
 		return periods;
 	}
-	
+	/**
+	 * 
+	 * @param
+	 */
 	public void setPeriods(List<Period> periods) {
 		this.periods = periods;
 	}
@@ -182,7 +210,10 @@ public class Registry implements Serializable{
 	public List<Order> getOrdersNotFinished() {
 		return ordersNotFinished;
 	}
-	
+	/**
+	 * 
+	 * @param
+	 */
 	public void setOrdersNotFinished(List<Order> ordersNotFinished) {
 		this.ordersNotFinished = ordersNotFinished;
 	}
@@ -191,7 +222,10 @@ public class Registry implements Serializable{
 	public List<Order> getOrdersFinished() {
 		return ordersFinished;
 	}
-
+	/**
+	 * 
+	 * @param
+	 */
 	public void setOrdersFinished(List<Order> ordersFinished) {
 		this.ordersFinished = ordersFinished;
 	}

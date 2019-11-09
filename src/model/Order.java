@@ -9,8 +9,7 @@ package model;
 import java.io.Serializable;
 
 /**
- * @author ASUS
- *
+ * This class represents
  */
 public class Order implements Comparable<Order>, Serializable {
 
@@ -56,6 +55,10 @@ public class Order implements Comparable<Order>, Serializable {
 	/**
 	 * crea un objeto de tipo orden que aun no ha sido facturado
 	 */
+	/**
+	 * 
+	 * @param
+	 */
 	public Order(String id, double md, double mod, double cif, int dayS, int monthS, int yearS) {
 		this.id = id;
 		MD = md;
@@ -66,6 +69,10 @@ public class Order implements Comparable<Order>, Serializable {
 	
 	/**
 	 * crea un objeto de tipo orden que ya ha sido facturado
+	 */
+	/**
+	 * 
+	 * @param
 	 */
 	public Order(String id, double md, double mod, double cif, int dayS, int monthS, int yearS, int dayF, int monthF, int yearF) {
 		this.id = id;
@@ -123,8 +130,8 @@ public class Order implements Comparable<Order>, Serializable {
 		return MD;
 	}
 	/**
-	 * agrega md extras
-	 * @return 
+	 * 
+	 * @param
 	 */
 	public void setMD(double md) {
 		MD += md;
@@ -164,13 +171,16 @@ public class Order implements Comparable<Order>, Serializable {
 		return (double)Math.round(CIFApplied * 100d) / 100;
 	}
 
-
-
 	@Override
 	public int compareTo(Order otherDate) {
 		int comparation = start.compareTo(otherDate.start);
 		return comparation;
 	}
+	
+	/**
+	 * 
+	 * @param
+	 */
 	public int compareTo1(Order otherDate) {
 		int comparation = finish.compareTo(otherDate.finish);
 		return comparation;
