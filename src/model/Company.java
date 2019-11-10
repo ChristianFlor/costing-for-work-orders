@@ -6,13 +6,6 @@
  */
 package model;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
 import java.io.Serializable;
 
 /**
@@ -20,7 +13,13 @@ import java.io.Serializable;
  */
 public class Company implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2L;
+
 ////////CONTANTS//////////
+	
 	public static final String DATA_PATH = "./data/companies.txt";
 	/**
 	 * It is a constant for define the base term (if it is defined for money)
@@ -72,13 +71,13 @@ public class Company implements Serializable{
 	 */
 	public Company( String name, String description, String baseType, double base , double budgtedCif) {
 		super();
-		registry = new Registry();
 		this.name = name;
 		this.description = description;
 		this.base = base;
 		this.baseType = baseType;
 		this.budgtedCif = budgtedCif;
 		CIF = budgtedCif/base;
+		registry = new Registry(CIF);
 	}
 	
 /////////////////GET and SET/////////////////////////////

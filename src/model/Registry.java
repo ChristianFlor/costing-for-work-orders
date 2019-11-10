@@ -8,8 +8,6 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -17,9 +15,13 @@ import java.util.List;
  * This class represents the company order record
  */
 public class Registry implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3L;
 
 ////////RELATIONS//////////
-	
 	/**
 	 * It is a list that contains the registry for periods
 	 */
@@ -28,6 +30,9 @@ public class Registry implements Serializable{
 	 * It is a list that contains the registry of orders not finished
 	 */
 	private List<Order> ordersNotFinished;
+	/**
+	 * It is a list that contains the registry of orders finished
+	 */
 	private List<Order> ordersFinished;
 	
 ////////ATRUBUTES//////////
@@ -41,8 +46,9 @@ public class Registry implements Serializable{
 
 	/**
 	 * Create 12 periods whit month names in Spanish and add to list periods
+	 * @param cif is the CIF rate
 	 */
-	public Registry() {
+	public Registry(double cif) {
 		ordersNotFinished= new ArrayList<Order>();
 		ordersFinished= new ArrayList<Order>();
 		periods = new ArrayList<Period>(12);
@@ -58,135 +64,162 @@ public class Registry implements Serializable{
 		periods.add(new Period(10));
 		periods.add(new Period(11));
 		periods.add(new Period(12));
+		cifRate = cif;
 	}
 	
 /////////////METHOD////////////
 	
 	/**
-	 * 
+	 * Calculate the applied CIF of all orders that have not been finalized
 	 */
-	public void calculateCIFAplicatedOrdersNotFinished(double tasa) {
+	public void calculateCIFAplicatedOrdersNotFinished() {
 		
 		for (Iterator<Order> iterator = ordersNotFinished.iterator(); iterator.hasNext();) {
 			Order order = (Order) iterator.next();
-			order.calculateCIFApplied(tasa);
+			order.calculateCIFApplied(cifRate);
 		}
 	}
 	
 	/**
-	 * 
-	 * @param
+	 * Calculate the applied CIF of all orders that have been finalized
 	 */
-	public void calculateCIFAplicatedOrdersFinished(double tasa) {
+	public void calculateCIFAplicatedOrdersFinished() {
 		for (Iterator<Order> iterator = ordersFinished.iterator(); iterator.hasNext();) {
 			Order order = (Order) iterator.next();
-			order.calculateCIFApplied(tasa);
+			order.calculateCIFApplied(cifRate);
 		}
 	}
 	
 	/**
-	 * 
-	 * @param
+	 * Calculate the applied CIF of all orders that have been finalized billed
 	 */
-	public void calculateCIFAplicatedOrdersBiled(double tasa) {
+	public void calculateCIFAplicatedOrdersBiled() {
 		for (int i = 0; i < periods.size(); i++) {
 			for (Iterator<Order> iterator = periods.get(i).getOrders().iterator(); iterator.hasNext();) {
 				Order order = (Order) iterator.next();
-				order.calculateCIFApplied(tasa);
+				order.calculateCIFApplied(cifRate);
 			}
 		}
-		
-	}
-
-	/**
-	 * Search a order in ordersNotBilled
-	 * @param id is the code of the order sought
-	 * @return an int represents the position of order sought in the ordersNotBilled, if it does not find returns -1
-	 */
-	public void finishedOrder(String id,double md, double mod, double cif, int dayF, int monthF, int yearF ) {
-		
-		for (int i = 0; i < ordersNotFinished.size(); i++) {
-			if(ordersNotFinished.get(i).getId().equals(id)) {
-				ordersNotFinished.get(i).setMD(md);
-				ordersNotFinished.get(i).setMOD(mod);
-				ordersNotFinished.get(i).setCIF(cif);
-				Order r= new Order(ordersNotFinished.get(i).getId(),ordersNotFinished.get(i).getMD(),ordersNotFinished.get(i).getMOD(),
-						ordersNotFinished.get(i).getCIF(),ordersNotFinished.get(i).getStart().getDay(),ordersNotFinished.get(i).getStart().getMonth(),
-						ordersNotFinished.get(i).getStart().getYear(), dayF,monthF,yearF);
-				ordersFinished.add(r);
-				ordersNotFinished.remove(i);
-			}
-		}
-	}
-	/**
-	 * agrega una orden a la lista de las ordenes que aun no han sido facturadas 
-	 * en orden
-	 * 
-	 */
-
-	/**
-	 * se encarga de crear y agregar una nueva orden a la lista correspondiente, ya sea un periodo especifico
-	 * o en la lista de las ordenes no facturadas
-	 */
-	/**
-	 * 
-	 * @param
-	 */
-	public void addOrderNF(Order nf) {
-		ordersNotFinished.add(nf);
-		
-		//sortByIdOrder();
 	}
 	
 	/**
-	 * 
-	 * @param
+	 * Delete an order
+	 * @param idOrder is order code to be deleted
+	 * @param finish is a boolean indicating if the order has been finalized
+	 * @param represents the total indirect manufacturing costs applied for the period period is a number indicating the order period, if the order has not been billed put zero
+	 * @return a boolean indicated if the order was registered (true) or it wasn't register (false)
+	 */
+	public boolean deleteOrder(String idOrder, boolean finish, int period) {
+		boolean delete = false;
+		if(finish) {
+			int o = searchOrder(idOrder, ordersFinished);
+			if(o!=-1) { ordersFinished.remove(o); }
+		}else if(period > 0){
+			List<Order> list = periods.get(period-1).getOrders();
+			int o = searchOrder(idOrder, list);
+			if(o!=-1) { list.remove(o); }
+		}else {
+			int o = searchOrder(idOrder, ordersNotFinished);
+			if(o!=-1) { ordersNotFinished.remove(o); }
+		}
+		return delete;
+	}
+	
+	public void setOrder(String idOrder) {
+		
+	}
+
+	/**
+	 * Change the status of an unfinished order to finalized
+	 * @param id is the order code that ends
+	 * @param md is a double that represents the MD that was added to finalize the order
+	 * @param mod is a double that represents the MOD that was added to finalize the order
+	 * @param rBase is a double that represents the real base that was added to finalize the order
+	 * @param dayF is a day of the finished date
+	 * @param monthF is a month of the finished date
+	 * @param yearF is a year of the finished date
+	 * @return a boolean indicated if the order was registered (true) or it wasn't register (false)
+	 */
+	public boolean finishedOrder(String id,double md, double mod, double rBase, int dayF, int monthF, int yearF ) {
+		
+		boolean finished = false;
+		int o = searchOrder(id, ordersNotFinished);
+		if(o!=-1) {
+			Order order = ordersFinished.get(o);
+			order.setMD(md);
+			order.setMOD(mod);
+			order.setRealBase(rBase);
+			order.setFinish(dayF, monthF, yearF);
+			ordersFinished.add(order);
+			ordersNotFinished.remove(o);
+			finished = true;
+		}
+		return finished;
+	}
+
+	/**
+	 * Add an order not finished to registry
+	 * @param nf is the order not finished
+	 */
+	public void addOrderNF(Order nf) {
+		ordersNotFinished.add(nf);
+	}
+	
+	/**
+	 * Add an order finished to registry
+	 * @param f is the order finished != null
 	 */
 	public void addOrderF(Order f) {
 		ordersFinished.add(f);
-		
-		//sortByIdOrder();
 	}
+	
 	/**
-	 * Search a order in ordersNotBilled
-	 * @param id is the code of the order sought
-	 * @return an int represents the position of order sought in the ordersNotBilled, if it does not find returns -1
+	 * Invoice an order finished in the corresponding period
+	 * @param id is the order code
+	 * @return a boolean that indicating if the order was billed
 	 */
-	public void billedOrder(String id) {
-		
-		for (int i = 0; i < ordersFinished.size(); i++) {
-			if(ordersFinished.get(i).getId().equals(id)) {
-				Order r= new Order(ordersFinished.get(i).getId(),ordersFinished.get(i).getMD(),ordersFinished.get(i).getMOD(),
-						ordersFinished.get(i).getCIF(),ordersFinished.get(i).getStart().getDay(),ordersFinished.get(i).getStart().getMonth(),
-						ordersFinished.get(i).getStart().getYear(), ordersFinished.get(i).getFinish().getDay(),ordersFinished.get(i).getFinish().getMonth(),
-						ordersFinished.get(i).getFinish().getYear());
-				addOrderB(r, r.getFinish().getMonth());
-				ordersFinished.remove(i);
+	public boolean billedOrder(String id) {
+		boolean billed = false;
+		int j = searchOrder(id, ordersFinished);
+		if(j!=-1) {
+			Order order = ordersFinished.get(j);
+			addOrderB(order, order.getFinish().getMonth());
+			ordersFinished.remove(j);
+			billed = true;
+		}
+		return billed;
+	}
+	
+	/**
+	 * Search a order in a collection
+	 * @param id is the code of the order sought
+	 * @param list is a collection when where the search will be performed
+	 * @return an number represents the position of order sought in the list, if it does not find returns -1
+	 */
+	public int searchOrder(String id, List<Order> list) {
+		int pos = -1;
+		for (int i = 0; i < list.size(); i++) {
+			if(list.get(i).getId().equals(id)) {
+				pos = i;
+				i= list.size();
 			}
 		}
+		return pos;
 	}
+	
 	/**
-	 * Register a order billed in order completion period
+	 * Pass a completed order to the corresponding period record
+	 * @param r is a order != null that you want to bill
+	 * @param period is a number that represents the period to which the order corresponds
 	 */
-	/**
-	 * 
-	 * @param
-	 */
-	public void addOrderB(Order r,int period) {
+	public void addOrderB(Order r, int period) {
 		for (int i = 0; i < periods.size(); i++) {
 			if(periods.get(i).getPeriodMonth()==period) {
 				periods.get(i).getOrders().add(r);
 			}
 		}
-		//sortByIdOrder();
-	}
 
-	/**
-	 * agrega una orden a la lista de ordenes del periodo que le corresponde
-	 * en orden
-	 * 
-	 */
-	
+	}
 
 /////////////////GET and SET/////////////////////////////
 	
@@ -196,13 +229,6 @@ public class Registry implements Serializable{
 	public List<Period> getPeriods() {
 		return periods;
 	}
-	/**
-	 * 
-	 * @param
-	 */
-	public void setPeriods(List<Period> periods) {
-		this.periods = periods;
-	}
 
 	/**
 	 * @return the ordersNotBilled list
@@ -210,25 +236,14 @@ public class Registry implements Serializable{
 	public List<Order> getOrdersNotFinished() {
 		return ordersNotFinished;
 	}
-	/**
-	 * 
-	 * @param
-	 */
-	public void setOrdersNotFinished(List<Order> ordersNotFinished) {
-		this.ordersNotFinished = ordersNotFinished;
-	}
-
 	
+	/**
+	 * @return the ordersFinished list
+	 */
 	public List<Order> getOrdersFinished() {
 		return ordersFinished;
 	}
-	/**
-	 * 
-	 * @param
-	 */
-	public void setOrdersFinished(List<Order> ordersFinished) {
-		this.ordersFinished = ordersFinished;
-	}
+
 	/**
 	 * @return the CIF rate
 	 */
@@ -242,10 +257,4 @@ public class Registry implements Serializable{
 	public void setCifRate(double cifRate) {
 		this.cifRate = cifRate;
 	}
-
-	
-	
-	
-	
-	
 }

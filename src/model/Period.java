@@ -15,8 +15,13 @@ import java.util.Iterator;
  */
 public class Period implements Serializable{
 	
-////////RELATIONS//////////
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4L;
 	
+////////RELATIONS//////////
+
 	/**
 	 * Is a list that contains all orders billed in this period
 	 */
@@ -30,28 +35,27 @@ public class Period implements Serializable{
 	 */
 	private int month;
 	/**
-	 * representa el costo de materiales directos de todo el periodo
+	 * Represents the cost of direct materials for the entire period
 	 */
 	private double MDTotal;
 	/**
-	 * representa el costo de mano de obra directa de todo el periodo
+	 * Represents the cost of direct labor for the entire period
 	 */
 	private double MODTotal;
 	/**
-	 * representa el total de los costos indirectos de fabricacion del periodo
+	 * Represents the total indirect manufacturing costs of the period
 	 */
-	private double CIFTotal;
+	private double RealBaseTotal;
 	/**
-	 * representa el total de los costos indirectos de fabricacion aplicados del periodo
+	 * Represents the total indirect manufacturing costs applied for the period
 	 */
 	private double CIFAplicated;
 	
 ////////CONSTRUCTOR//////////
 	
 	/**
-	 * permite crear objeto de tipo periodo con el nombre que se asigna
-	 * 
-	 * para
+	 * Allows to create a period type object with the name assigned
+	 * @param periodName is a number that represents the period name
 	 */
 	public Period(int periodName) {
 		this.month = periodName;
@@ -61,24 +65,24 @@ public class Period implements Serializable{
 /////////////METHOD////////////
 	
 	/**
-	 * calcula el total de md, mod, cif y cifaplicados del periodo
+	 * calculate the total MD, MOD, realBase and CIFAplicated for the period
 	 */
 	public void calculateTotalCost(double tasa) {
 		double mdTotal = 0;
 		double modTotal = 0;
-		double cifTotal = 0;
+		double realBaseTotal = 0;
 		double cifAplicatedTotal = 0;
 		for (Iterator<Order> iterator = ordersBilled.iterator(); iterator.hasNext();) {
 			Order order = (Order) iterator.next();
 			mdTotal += order.getMD();
 			modTotal += order.getMOD();
-			cifTotal += order.getCIF();
+			realBaseTotal += order.getRealBase();
 			order.calculateCIFApplied(tasa);
 			cifAplicatedTotal += order.getCIFApplied();
 		}
 		MDTotal = mdTotal;
 		MODTotal = modTotal;
-		CIFTotal = cifTotal;
+		RealBaseTotal = realBaseTotal;
 		CIFAplicated = cifAplicatedTotal;
 	}
 	
@@ -86,50 +90,45 @@ public class Period implements Serializable{
 /////////////////GET and SET/////////////////////////////
 	
 	/**
-	 * retorna la lista orders
+	 * @return the order list
 	 */
 	public ArrayList<Order> getOrders() {
 		return ordersBilled;
 	}
 	
 	/**
-	 * retorna el nombre del periodo
+	 * @return the period month
 	 */
 	public int getPeriodMonth() {
 		return month;
 	}
 	
 	/**
-	 * retorna el md 
+	 * @return the MDTotal of the period
 	 */
 	public double getMDTotal() {
 		return MDTotal;
 	}
 	
 	/**
-	 * retorna el mod total
+	 * @return the MODTotal of the period
 	 */
 	public double getMODTotal() {
 		return MODTotal;
 	}
-
-	/**
-	 * retorna el md 
-	 */
-	public double getCIFTotal() {
-		return CIFTotal;
-	}
-
 	
 	/**
-	 * retorn el total de cif aplicados
+	 * @return the realBaseTotal of the period
+	 */
+	public double getRealBaseTotal() {
+		return RealBaseTotal;
+	}
+	
+	/**
+	 * @return the CIFAplicated of the period
 	 */
 	public double getCIFAplicated() {
 		return CIFAplicated;
 	}
-
-	
-	
-	
 	
 }

@@ -9,42 +9,46 @@ package model;
 import java.io.Serializable;
 
 /**
- * This class represents
+ * This class represents an order
  */
 public class Order implements Comparable<Order>, Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5L;
+	
 ////////RELATIONS//////////
 	
 	/**
-	 * repreenta la fecha de inicio de la orden
+	 * It represents the order start date
 	 */
 	private DateOrder start;
 	/**
-	 * representa la fecha en que finalizo la orden
+	 * It represents the order end date
 	 */
 	private DateOrder finish;
 	
 ////////ATRUBUTES//////////
 	
 	/**
-	 * representa el codigo de la orden
+	 * It represents the order code
 	 */
 	private String id;
-	
 	/**
-	 * representa los costos de mateales directos de la orden
+	 * It represents the cost of direct order material
 	 */
 	private double MD;
 	/**
-	 * representa los costos de mano de obra directa de la orden
+	 * It represents the cost of direct order labor
 	 */
 	private double MOD;
 	/**
-	 * representa los costos indirectos de fabricacion de la orden
+	 * It represents the cost the real base of the order
 	 */
-	private double CIF;
+	private double realBase;
 	/**
-	 * representa los costos indirectos de fabricacion aplicados de la orden
+	 * It represents the CIF Applicated for the order
 	 */
 	private double CIFApplied;
 
@@ -53,63 +57,73 @@ public class Order implements Comparable<Order>, Serializable {
 ////////CONSTRUCTOR//////////
 	
 	/**
-	 * crea un objeto de tipo orden que aun no ha sido facturado
+	 * create an order type object that has not yet been finished
+	 * @param id is the order code
+	 * @param md is the cost of MD spend do far
+	 * @param mod is the cost of MOD spend do far
+	 * @param rBase is the cost of real base spend do far
+	 * @param dayS is a day of the start date
+	 * @param monthS is a month of the start date
+	 * @param yearS is a year of the start date
 	 */
-	/**
-	 * 
-	 * @param
-	 */
-	public Order(String id, double md, double mod, double cif, int dayS, int monthS, int yearS) {
+	public Order(String id, double md, double mod, double rBase, int dayS, int monthS, int yearS) {
 		this.id = id;
 		MD = md;
 		MOD = mod;
-		CIF = cif;
+		realBase = rBase;
 		start = new DateOrder(dayS, monthS, yearS);
 	}
 	
 	/**
-	 * crea un objeto de tipo orden que ya ha sido facturado
+	 * create an order type object that has not yet been finished
+	 * @param id is the order code
+	 * @param md is the cost of MD spend do far
+	 * @param mod is the cost of MOD spend do far
+	 * @param rBase is the cost of real base spend do far
+	 * @param dayS is a day of the start date
+	 * @param monthS is a month of the start date
+	 * @param yearS is a year of the start date
+	 * @param dayF is a day of the finished date
+	 * @param monthF is a month of the finished date
+	 * @param yearF is a year of the finished date
 	 */
-	/**
-	 * 
-	 * @param
-	 */
-	public Order(String id, double md, double mod, double cif, int dayS, int monthS, int yearS, int dayF, int monthF, int yearF) {
+	public Order(String id, double md, double mod, double  rBase, int dayS, int monthS, int yearS, int dayF, int monthF, int yearF) {
 		this.id = id;
 		MD = md;
 		MOD = mod;
-		CIF = cif;
+		realBase = rBase;
 		start = new DateOrder(dayS, monthS, yearS);
 		finish = new DateOrder(dayF, monthF, yearF);
 	}
 	
 	/**
-	 * calcula el cif aplicado de la orden 
-	 * ****info base, como pasar esa info?****
-	 * 
+	 * Calculate the applied CIF of the order
 	 */
 	public void calculateCIFApplied(double tasa) {
-		CIFApplied = tasa*CIF;
+		CIFApplied = tasa*realBase ;
 	}	
 	
 	
 /////////////////GET and SET/////////////////////////////
 	
 	/**
-	 * retorna la fecha de inicio de la orden
+	 * @return the order start date
 	 */
 	public DateOrder getStart() {
 		return start;
 	}
 	
 	/**
-	 * retorna la fecha de fin de la orden
+	 * @return the order end date
 	 */
 	public DateOrder getFinish() {
 		return finish;
 	}
 	/**
-	 * agrega una fecha de fin de la orden
+	 * Add a finish date for the order
+	 * @param dayF is a day of the finished date
+	 * @param monthF is a month of the finished date
+	 * @param yearF is a year of the finished date
 	 */
 	public void setFinish(int dayF, int monthF, int yearF) {
 		DateOrder nFinish = new DateOrder(dayF, monthF, yearF);
@@ -117,70 +131,97 @@ public class Order implements Comparable<Order>, Serializable {
 	}
 	
 	/**
-	 * retorna el id de la orden
+	 * @return the order code
 	 */
 	public String getId() {
 		return id;
 	}
+	/**
+	 * Change the order code
+	 * @param id is the new code for the order
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
 	
 	/**
-	 * retorna el md
+	 * @return the order MD
 	 */
 	public double getMD() {
 		return MD;
 	}
 	/**
-	 * 
-	 * @param
+	 * Change the order MD
+	 * @param md is the new MD for the order
 	 */
 	public void setMD(double md) {
+		MD = md;
+	}
+	
+	/**
+	 * Add the extra cost of MD of the order
+	 * @param
+	 */
+	public void addMD(double md) {
 		MD += md;
 	}
 	
 	/**
-	 * retorna mod
+	 * @return the order MOD
 	 */
 	public double getMOD() {
 		return MOD;
 	}
 	/**
-	 * agrega costos de mod extras
+	 * Change the order MOD
+	 * @param md is the new MOD for the order
 	 */
 	public void setMOD(double mod) {
+		MOD = mod;
+	}
+	/**
+	 * add the extra cost of MOD of the order
+	 */
+	public void addMOD(double mod) {
 		MOD += mod;
-	}
-	 
-	/**
-	 * retorna el cif
-	 */
-	public double getCIF() {
-		return CIF;
-	}
-	/**
-	 * agrega costos de cif extras
-	 */
-	public void setCIF(double cIF) {
-		CIF += cIF;
 	}
 	
 	/**
-	 * retorna el cif aplicado de la orden
+	 * @return the order realBase
+	 */
+	public double getRealBase() {
+		return realBase;
+	}
+	/**
+	 * Change the order real base
+	 * @param realBase is the new realBase for the order
+	 */
+	 public void setRealBase(double realBase) {
+		this.realBase = realBase;
+	}
+	 /**
+	 * add the extra cost of realBase of the order
+	 */
+	public void addRealBase(double realBase) {
+		this.realBase += realBase;
+	} 
+	 
+	 
+	/**
+	 * @return the applied CIF of order
 	 */
 	public double getCIFApplied() {
-		
 		return (double)Math.round(CIFApplied * 100d) / 100;
 	}
 
+	
+	
 	@Override
 	public int compareTo(Order otherDate) {
 		int comparation = start.compareTo(otherDate.start);
 		return comparation;
 	}
 	
-	/**
-	 * 
-	 * @param
-	 */
 	public int compareTo1(Order otherDate) {
 		int comparation = finish.compareTo(otherDate.finish);
 		return comparation;
