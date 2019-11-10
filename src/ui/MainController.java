@@ -315,19 +315,27 @@ public class MainController {
     @FXML
     void createCompany(ActionEvent event) {
     	try {
-    	program = new Company(nameCompany.getText(), descripcion.getText(), typeBase.getValue(),Double.parseDouble(valueBase.getText()),Double.parseDouble(cifPresupuestado.getText()));
-    	Alert a = new Alert(AlertType.INFORMATION);
-		a.setContentText("La compañia: "+nameCompany.getText()+", ha sido creada correctamente");
-		a.show();
-		nameCompany.setEditable(false);
-		descripcion.setEditable(false);
-		valueBase.setEditable(false);
-		cifPresupuestado.setEditable(false);
-		if(typeBase.getValue().equals("DINERO")) {
-			tasaCIF.setText(String.format("%.3f", program.getCIF())+"$");
-		}else {
-			tasaCIF.setText(String.format("%.3f", program.getCIF())+"");
-		}
+    	if(Double.parseDouble(valueBase.getText()) >0){
+    		program = new Company(nameCompany.getText(), descripcion.getText(), typeBase.getValue(),Double.parseDouble(valueBase.getText()),Double.parseDouble(cifPresupuestado.getText()));
+        	Alert a = new Alert(AlertType.INFORMATION);
+    		a.setContentText("La compañia: "+nameCompany.getText()+", ha sido creada correctamente");
+    		a.show();
+    		nameCompany.setEditable(false);
+    		descripcion.setEditable(false);
+    		valueBase.setEditable(false);
+    		cifPresupuestado.setEditable(false);
+    		
+    		if(typeBase.getValue().equals("DINERO")) {
+    			tasaCIF.setText(String.format("%.3f", program.getCIF())+"$");
+    		}else {
+    			tasaCIF.setText(String.format("%.3f", program.getCIF())+"");
+    		}
+   		}else {
+   			Alert b = new Alert(AlertType.ERROR);
+   	   		b.setContentText("La base no puede ser negativa o ceros");
+   	   		b.show();
+   		}
+    	
 		
     	}catch(Exception e) {
     		Alert a = new Alert(AlertType.ERROR);
@@ -372,6 +380,7 @@ public class MainController {
 			int dayF = periodFinal.getDayOfMonth();
 			int yearF = periodFinal.getYear();
 
+			
 			Order orderF = new Order(idOrder.getText(), Double.parseDouble(MDOrder.getText()),
 					Double.parseDouble(MODOrder.getText()), Double.parseDouble(CIFOrder.getText()), dayS, monthS, yearS,
 					dayF, monthF, yearF);
@@ -379,7 +388,14 @@ public class MainController {
 					Double.parseDouble(MODOrder.getText()), Double.parseDouble(CIFOrder.getText()), dayS, monthS,
 					yearS);
 			if (finished) {
-				program.getRegistry().addOrderF(orderF);
+				if(Double.parseDouble(CIFOrder.getText()) >0 ) {
+					program.getRegistry().addOrderF(orderF);
+				}else {
+					Alert a = new Alert(AlertType.ERROR);
+					a.setContentText("Digite un numero mayor a 0");
+					a.show();
+				}
+				
 			} else {
 				program.getRegistry().addOrderNF(orderNF);
 			}
@@ -397,7 +413,7 @@ public class MainController {
 			a.show();
 		} catch (Exception e) {
 			Alert a = new Alert(AlertType.ERROR);
-			a.setContentText("Cree la compaï¿½ia");
+			a.setContentText("Cree la compañia");
 			a.show();
 		}
 		
