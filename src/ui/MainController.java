@@ -430,7 +430,7 @@ public class MainController {
 
 		double tasa = program.getBudgtedCif() / program.getBase();
 
-		program.getRegistry().calculateCIFAplicatedOrdersNotFinished(tasa);
+		program.getRegistry().calculateCIFAplicatedOrdersNotFinished();
 
 		TableColumn<Order, String> id = new TableColumn<Order, String>("ID");
 		id.setCellValueFactory(new PropertyValueFactory<Order, String>("id"));
@@ -467,7 +467,7 @@ public class MainController {
 
 		double tasa = program.getBudgtedCif() / program.getBase();
 
-		program.getRegistry().calculateCIFAplicatedOrdersFinished(tasa);
+		program.getRegistry().calculateCIFAplicatedOrdersFinished();
 
 		TableColumn<Order, String> id = new TableColumn<Order, String>("ID");
 		id.setCellValueFactory(new PropertyValueFactory<Order, String>("id"));
@@ -506,7 +506,7 @@ public class MainController {
 
 		double tasa = program.getBudgtedCif() / program.getBase();
 
-		program.getRegistry().calculateCIFAplicatedOrdersBiled(tasa);
+		program.getRegistry().calculateCIFAplicatedOrdersBiled();
 
 		TableColumn<Order, String> id = new TableColumn<Order, String>("ID");
 		id.setCellValueFactory(new PropertyValueFactory<Order, String>("id"));
