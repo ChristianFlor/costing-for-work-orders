@@ -326,9 +326,9 @@
                                                 <Font name="Verdana Bold" size="24.0" />
                                              </font>
                                           </Label>
-                                          <ScrollPane fx:id="tableFinished" prefHeight="380.0" prefWidth="664.0">
+                                          <ScrollPane fx:id="tableFinished" prefHeight="380.0" prefWidth="637.0">
                                              <content>
-                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="378.0" prefWidth="664.0" />
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="378.0" prefWidth="627.0" />
                                              </content>
                                           </ScrollPane>
                                        </children>
@@ -371,48 +371,81 @@
                               <VBox fillWidth="false" focusTraversable="true" prefHeight="586.0" prefWidth="685.0" spacing="5.0" BorderPane.alignment="CENTER">
                                  <children>
                                     <Separator prefHeight="14.0" prefWidth="392.0" visible="false" />
-                                    <VBox alignment="CENTER" prefHeight="433.0" prefWidth="668.0" style="-fx-border-color: #4285F4; -fx-border-width: 2; -fx-border-radius: 15;">
+                                    <VBox alignment="CENTER" fillWidth="false" prefHeight="433.0" prefWidth="668.0" style="-fx-border-color: #4285F4; -fx-border-width: 2; -fx-border-radius: 15;">
                                        <children>
                                           <Label contentDisplay="CENTER" prefHeight="30.0" prefWidth="338.0" text="Lista ordenes en proceso">
                                              <font>
                                                 <Font name="Verdana Bold" size="24.0" />
                                              </font>
                                           </Label>
-                                          <ScrollPane fx:id="tableNOFinished" prefHeight="380.0" prefWidth="664.0">
+                                          <ScrollPane fx:id="tableNOFinished" prefHeight="393.0" prefWidth="652.0">
                                             <content>
-                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="377.0" prefWidth="677.0" />
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="368.0" prefWidth="650.0" />
                                             </content>
                                           </ScrollPane>
                                        </children>
                                     </VBox>
-                                    <VBox alignment="CENTER" prefHeight="114.0" prefWidth="667.0" style="-fx-border-color: #4285F4; -fx-border-width: 2; -fx-border-radius: 15;">
+                                    <HBox style="-fx-border-color: #4285F4; -fx-border-width: 2; -fx-border-radius: 15;">
                                        <children>
-                                          <Label text="Terminar orden">
-                                             <font>
-                                                <Font name="Verdana Bold" size="24.0" />
-                                             </font>
-                                          </Label>
-                                          <HBox alignment="CENTER" prefHeight="31.0" prefWidth="348.0" spacing="8.0">
+                                          <VBox alignment="CENTER" prefHeight="114.0" prefWidth="667.0">
                                              <children>
-                                                <Label text="ID">
+                                                <Label text="Eliminar orden">
                                                    <font>
-                                                      <Font name="Consolas" size="14.0" />
+                                                      <Font name="Verdana Bold" size="24.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField fx:id="idNOFinished" prefHeight="37.0" prefWidth="159.0" style="-fx-background-color: white; -fx-text-fill: black;" styleClass="context-menu" />
-                                                <ImageView fitHeight="33.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../uiImg/icons/busqueda.png" />
-                                                   </image>
-                                                </ImageView>
-                                                <Button mnemonicParsing="false" onAction="#searchOrder" prefHeight="39.0" prefWidth="92.0" text="OK" />
+                                                <HBox alignment="CENTER" prefHeight="31.0" prefWidth="348.0" spacing="8.0">
+                                                   <children>
+                                                      <Label text="ID">
+                                                         <font>
+                                                            <Font name="Consolas" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <TextField fx:id="idDeleteOrder" prefHeight="37.0" prefWidth="159.0" style="-fx-background-color: white; -fx-text-fill: black;" styleClass="context-menu" />
+                                                      <ImageView fitHeight="33.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../uiImg/icons/busqueda.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <Button mnemonicParsing="false" onAction="#deleteOrder" prefHeight="39.0" prefWidth="92.0" text="OK" />
+                                                   </children>
+                                                   <padding>
+                                                      <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                                                   </padding>
+                                                </HBox>
                                              </children>
-                                             <padding>
-                                                <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
-                                             </padding>
-                                          </HBox>
+                                          </VBox>
+                                          <Separator orientation="VERTICAL" prefHeight="108.0" prefWidth="26.0" style="-fx-background-color: #4285F4;" />
+                                          <VBox alignment="CENTER" prefHeight="114.0" prefWidth="667.0">
+                                             <children>
+                                                <Label text="Terminar orden">
+                                                   <font>
+                                                      <Font name="Verdana Bold" size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <HBox alignment="CENTER" prefHeight="31.0" prefWidth="348.0" spacing="8.0">
+                                                   <children>
+                                                      <Label text="ID">
+                                                         <font>
+                                                            <Font name="Consolas" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <TextField fx:id="idNOFinished" prefHeight="37.0" prefWidth="159.0" style="-fx-background-color: white; -fx-text-fill: black;" styleClass="context-menu" />
+                                                      <ImageView fitHeight="33.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../uiImg/icons/busqueda.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <Button mnemonicParsing="false" onAction="#searchOrder" prefHeight="39.0" prefWidth="92.0" text="OK" />
+                                                   </children>
+                                                   <padding>
+                                                      <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                                                   </padding>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
                                        </children>
-                                    </VBox>
+                                    </HBox>
                                     <Separator prefHeight="0.0" prefWidth="392.0" visible="false" />
                                  </children>
                                  <padding>
@@ -427,16 +460,16 @@
                      <content>
                         <BorderPane prefHeight="452.0" prefWidth="805.0">
                            <center>
-                              <VBox alignment="CENTER" prefHeight="547.0" prefWidth="1121.0" style="-fx-border-color: #4285F4; -fx-border-width: 2; -fx-border-radius: 15;" BorderPane.alignment="CENTER">
+                              <VBox alignment="CENTER" fillWidth="false" prefHeight="547.0" prefWidth="1121.0" style="-fx-border-color: #4285F4; -fx-border-width: 2; -fx-border-radius: 15;" BorderPane.alignment="CENTER">
                                  <children>
                                     <Label contentDisplay="CENTER" prefHeight="30.0" prefWidth="337.0" text="Lista ordenes facturadas">
                                        <font>
                                           <Font name="Verdana Bold" size="24.0" />
                                        </font>
                                     </Label>
-                                    <ScrollPane fx:id="tableBilled" prefHeight="499.0" prefWidth="1344.0">
+                                    <ScrollPane fx:id="tableBilled" prefHeight="499.0" prefWidth="719.0">
                                       <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="477.0" prefWidth="740.0" />
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="477.0" prefWidth="708.0" />
                                       </content>
                                     </ScrollPane>
                                  </children>

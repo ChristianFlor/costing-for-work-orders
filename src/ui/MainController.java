@@ -37,6 +37,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 import model.Company;
 import model.Order;
@@ -147,7 +148,9 @@ public class MainController {
 	 */
 	@FXML
 	private TextField idNOFinished;
-
+	
+	@FXML
+	private TextField idDeleteOrder;
 	/**
 	 * 
 	 */
@@ -270,7 +273,7 @@ public class MainController {
 		}
 		idSearch = idNOFinished.getText();
 	}
-
+	
 	/**
 	 * 
 	 */
@@ -290,6 +293,14 @@ public class MainController {
 		tableNOFinished.setContent(listNOFinished);
 		tableFinished.setContent(listIsFinished);
 		tableBilled.setContent(listBilled);
+	}
+	
+	@FXML
+    void deleteOrder(ActionEvent event) {
+		idSearch=idDeleteOrder.getText();
+		program.getRegistry().deleteOrder(idSearch, false, 0);
+		listNOFinished = createTableNOFinished();
+		tableNOFinished.setContent(listNOFinished);
 	}
 
 /////////////////////////////////////////////
@@ -423,18 +434,20 @@ public class MainController {
 	/**
 	 * 
 	 */
+	@SuppressWarnings("unchecked")
 	private TableView<Order> createTableNOFinished() {
 		listNOFinished = new TableView<Order>();
 		data = createDataNOFinished();
 		listNOFinished.setEditable(true);
 
-		double tasa = program.getBudgtedCif() / program.getBase();
 
 		program.getRegistry().calculateCIFAplicatedOrdersNotFinished();
 
 		TableColumn<Order, String> id = new TableColumn<Order, String>("ID");
 		id.setCellValueFactory(new PropertyValueFactory<Order, String>("id"));
-
+		id.setCellFactory(TextFieldTableCell.forTableColumn());
+		id.setOnEditCommit(data -> {program.getRegistry().getOrdersNotFinished().get(0).setId(data.getNewValue()+"");});
+		
 		TableColumn<Order, Date> start = new TableColumn<Order, Date>("INICIO");
 		start.setCellValueFactory(new PropertyValueFactory<Order, Date>("start"));
 
@@ -446,26 +459,29 @@ public class MainController {
 
 		TableColumn<Order, String> MOD = new TableColumn<Order, String>("MOD");
 		MOD.setCellValueFactory(new PropertyValueFactory<Order, String>("MOD"));
+		
+		TableColumn<Order, String> realBase = new TableColumn<Order, String>("BASE REAL");
+		realBase.setCellValueFactory(new PropertyValueFactory<Order, String>("realBase"));
 
-		TableColumn<Order, String> CIFApplied = new TableColumn<Order, String>("BASE REAL");
+		TableColumn<Order, String> CIFApplied = new TableColumn<Order, String>("CIF Apli");
 		CIFApplied.setCellValueFactory(new PropertyValueFactory<Order, String>("CIFApplied"));
 
 		listNOFinished.setItems(data);
-		listNOFinished.getColumns().addAll(id, start, finish, MD, MOD, CIFApplied);
+		listNOFinished.getColumns().addAll(id, start, finish, MD, MOD, realBase, CIFApplied);
+		listNOFinished.prefWidthProperty().bind(tableNOFinished.widthProperty());
+		listNOFinished.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		
-		listNOFinished.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
 		return listNOFinished;
 	}
 
 	/**
 	 * 
 	 */
+	@SuppressWarnings("unchecked")
 	private TableView<Order> createTableFinished() {
 		listIsFinished = new TableView<Order>();
 		data = createDataFinished();
 		listIsFinished.setEditable(true);
-
-		double tasa = program.getBudgtedCif() / program.getBase();
 
 		program.getRegistry().calculateCIFAplicatedOrdersFinished();
 
@@ -484,14 +500,18 @@ public class MainController {
 		TableColumn<Order, String> MOD = new TableColumn<Order, String>("MOD");
 		MOD.setCellValueFactory(new PropertyValueFactory<Order, String>("MOD"));
 
+		TableColumn<Order, String> realBase = new TableColumn<Order, String>("BASE REAL");
+		realBase.setCellValueFactory(new PropertyValueFactory<Order, String>("realBase"));
 
-		TableColumn<Order, String> CIFApplied = new TableColumn<Order, String>("BASE REAL");
+		TableColumn<Order, String> CIFApplied = new TableColumn<Order, String>("CIF Apli");
 		CIFApplied.setCellValueFactory(new PropertyValueFactory<Order, String>("CIFApplied"));
 
+
 		listIsFinished.setItems(data);
-		listIsFinished.getColumns().addAll(id, start, finish, MD, MOD, CIFApplied);
+		listIsFinished.getColumns().addAll(id, start, finish, MD, MOD, realBase,CIFApplied);
+		listIsFinished.prefWidthProperty().bind(tableFinished.widthProperty());
+		listIsFinished.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		
-		listIsFinished.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
 
 		return listIsFinished;
 	}
@@ -499,12 +519,11 @@ public class MainController {
 	/**
 	 * 
 	 */
+	@SuppressWarnings("unchecked")
 	private TableView<Order> createTableBilled() {
 		listBilled = new TableView<Order>();
 		data = createDataBilled();
 		listBilled.setEditable(true);
-
-		double tasa = program.getBudgtedCif() / program.getBase();
 
 		program.getRegistry().calculateCIFAplicatedOrdersBiled();
 
@@ -523,14 +542,17 @@ public class MainController {
 		TableColumn<Order, String> MOD = new TableColumn<Order, String>("MOD");
 		MOD.setCellValueFactory(new PropertyValueFactory<Order, String>("MOD"));
 
+		TableColumn<Order, String> realBase = new TableColumn<Order, String>("BASE REAL");
+		realBase.setCellValueFactory(new PropertyValueFactory<Order, String>("realBase"));
 
-		TableColumn<Order, String> CIFApplied = new TableColumn<Order, String>("BASE REAL");
+		TableColumn<Order, String> CIFApplied = new TableColumn<Order, String>("CIF Apli");
 		CIFApplied.setCellValueFactory(new PropertyValueFactory<Order, String>("CIFApplied"));
 
-		listBilled.setItems(data);
-		listBilled.getColumns().addAll(id, start, finish, MD, MOD, CIFApplied);
-		listBilled.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
 
+		listBilled.setItems(data);
+		listBilled.getColumns().addAll(id, start, finish, MD, MOD, realBase, CIFApplied);
+		listBilled.prefWidthProperty().bind(tableBilled.widthProperty());
+		listBilled.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		return listBilled;
 	}
 
@@ -584,7 +606,6 @@ public class MainController {
 			try {
 				
 				program = (Company) entrada.readObject();
-				System.out.println("sii");
 				entrada.close();
 				listNOFinished = createTableNOFinished();
 				listIsFinished = createTableFinished();
