@@ -37,6 +37,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 import model.Company;
 import model.Order;
@@ -434,26 +435,38 @@ public class MainController {
 
 		TableColumn<Order, String> id = new TableColumn<Order, String>("ID");
 		id.setCellValueFactory(new PropertyValueFactory<Order, String>("id"));
-
+		id.setCellFactory(TextFieldTableCell.forTableColumn());
+		id.setOnEditCommit(data -> {program.getRegistry().getOrdersNotFinished().get(0).setId(data.getNewValue()+"");});
+		
 		TableColumn<Order, Date> start = new TableColumn<Order, Date>("INICIO");
 		start.setCellValueFactory(new PropertyValueFactory<Order, Date>("start"));
-
+		
 		TableColumn<Order, Date> finish = new TableColumn<Order, Date>("FIN");
 		finish.setCellValueFactory(new PropertyValueFactory<Order, Date>("finish"));
-
+		
 		TableColumn<Order, String> MD = new TableColumn<Order, String>("MD");
 		MD.setCellValueFactory(new PropertyValueFactory<Order, String>("MD"));
-
+		
+		//MD.setCellFactory(TextFieldTableCell.forTableColumn());
+		//DoubleConvert m= data.getNewValue();
+		/*
+		MD.setOnEditCommit(data -> {
+			final Double value = data.getNewValue() != null ?
+		            data.getNewValue() : data.getOldValue();
+			program.getRegistry().getOrdersNotFinished().get(0).setMD(data.getNewValue());});
+		*/
 		TableColumn<Order, String> MOD = new TableColumn<Order, String>("MOD");
 		MOD.setCellValueFactory(new PropertyValueFactory<Order, String>("MOD"));
-
+		/*MOD.setCellFactory(TextFieldTableCell.forTableColumn());
+		MOD.setOnEditCommit(data -> {program.getRegistry().getOrdersNotFinished().get(0).setMOD(Double.parseDouble(data.getNewValue()));});
+		*/
 		TableColumn<Order, String> CIFApplied = new TableColumn<Order, String>("BASE REAL");
 		CIFApplied.setCellValueFactory(new PropertyValueFactory<Order, String>("CIFApplied"));
 
 		listNOFinished.setItems(data);
 		listNOFinished.getColumns().addAll(id, start, finish, MD, MOD, CIFApplied);
 		
-		listNOFinished.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
+		listNOFinished.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		return listNOFinished;
 	}
 
@@ -492,7 +505,7 @@ public class MainController {
 		listIsFinished.getColumns().addAll(id, start, finish, MD, MOD, CIFApplied);
 		
 		listIsFinished.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
-
+	
 		return listIsFinished;
 	}
 
@@ -575,7 +588,6 @@ public class MainController {
 	public void initialize() throws FileNotFoundException, IOException {
 		isFinished.getItems().addAll("SI", "NO");
 		typeBase.getItems().addAll("DINERO", "HORAS");
-		fechaFin.setStyle("-fx-text-fill: black");
 
 		File file = new File(Company.DATA_PATH);
 
@@ -584,7 +596,7 @@ public class MainController {
 			try {
 				
 				program = (Company) entrada.readObject();
-				System.out.println("sii");
+				
 				entrada.close();
 				listNOFinished = createTableNOFinished();
 				listIsFinished = createTableFinished();
@@ -594,7 +606,7 @@ public class MainController {
 				tableFinished.setContent(listIsFinished);
 				tableBilled.setContent(listBilled);
 
-			} catch (ClassNotFoundException e) {
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

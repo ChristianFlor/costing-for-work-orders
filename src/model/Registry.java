@@ -29,7 +29,7 @@ public class Registry implements Serializable{
 	 */
 	private List<Order> ordersNotFinished;
 	private List<Order> ordersFinished;
-	
+	private static final long serialVersionUID = 3L;
 ////////ATRUBUTES//////////
 	
 	/**

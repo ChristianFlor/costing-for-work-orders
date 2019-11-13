@@ -32,7 +32,7 @@ public class Company implements Serializable{
 	public final static String HOURS = "horas";
 
 ////////RELATIONS//////////
-	
+	private static final long serialVersionUID = 2L;
 	/**
 	 * It is a relation that represents the company's registry
 	 */

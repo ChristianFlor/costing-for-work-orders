@@ -21,7 +21,7 @@ public class Period implements Serializable{
 	 * Is a list that contains all orders billed in this period
 	 */
 	private ArrayList<Order> ordersBilled;
-	
+	private static final long serialVersionUID = 4L;
 	
 ////////ATRUBUTES//////////
 	

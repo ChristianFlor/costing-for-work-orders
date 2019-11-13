@@ -17,7 +17,7 @@ import java.util.Date;
 public class DateOrder implements Comparable<DateOrder>, Serializable{
 
 ////////ATRUBUTES//////////
-	
+	private static final long serialVersionUID = 1L;
 	/**
 	 * Represents the date's day
 	 */
@@ -34,9 +34,10 @@ public class DateOrder implements Comparable<DateOrder>, Serializable{
 ////////CONSTRUCTOR//////////
 	
 	/**
-	 * permite crear un objeto de tipo fecha
-	 * Create an object 
-	 * params
+	 * Allows you to create an object of type data order
+	 * @param day is the date day
+	 * @param month is the date month
+	 * @param year is the date year
 	 */
 	public DateOrder(int day, int month, int year) {
 		this.day = day;
@@ -78,7 +79,7 @@ public class DateOrder implements Comparable<DateOrder>, Serializable{
 	}
 	
 	/**
-	 * retonra el año de la fecha
+	 * retonra el aÃ±o de la fecha
 	 * 
 	 */
 	public int getYear() {

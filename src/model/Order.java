@@ -14,7 +14,7 @@ import java.io.Serializable;
 public class Order implements Comparable<Order>, Serializable {
 
 ////////RELATIONS//////////
-	
+	private static final long serialVersionUID = 5L;
 	/**
 	 * repreenta la fecha de inicio de la orden
 	 */
@@ -133,8 +133,8 @@ public class Order implements Comparable<Order>, Serializable {
 	 * 
 	 * @param
 	 */
-	public void setMD(double md) {
-		MD += md;
+	public void setMD(double md2) {
+		MD += md2;
 	}
 	
 	/**
@@ -177,6 +177,18 @@ public class Order implements Comparable<Order>, Serializable {
 		return comparation;
 	}
 	
+	public void setStart(DateOrder start) {
+		this.start = start;
+	}
+
+	public void setFinish(DateOrder finish) {
+		this.finish = finish;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	/**
 	 * 
 	 * @param
