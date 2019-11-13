@@ -143,15 +143,15 @@ public class Registry implements Serializable{
 	public boolean finishedOrder(String id,double md, double mod, double rBase, int dayF, int monthF, int yearF ) {
 		
 		boolean finished = false;
-		int o = searchOrder(id, ordersNotFinished);
-		if(o!=-1) {
-			Order order = ordersFinished.get(o);
+		int m = searchOrder(id, ordersNotFinished);
+		if(m!=-1) {
+			Order order = ordersNotFinished.get(m);
 			order.setMD(md);
 			order.setMOD(mod);
 			order.setRealBase(rBase);
 			order.setFinish(dayF, monthF, yearF);
 			ordersFinished.add(order);
-			ordersNotFinished.remove(o);
+			ordersNotFinished.remove(m);
 			finished = true;
 		}
 		return finished;

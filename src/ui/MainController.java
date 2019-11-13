@@ -369,7 +369,10 @@ public class MainController {
 		a.setContentText("Cree la nueva compañia");
 		a.show();
 	}
+    @FXML
+    void generateAllBill(ActionEvent event) {
 
+    }
     /**
 	 * 
 	 */
