@@ -221,6 +221,19 @@ public class Registry implements Serializable{
 
 	}
 
+	public void generateAllBill(String comanyName){
+		String msj = comanyName+"\nORDENES FACTURADAS\n";
+		for (Iterator<Period> iterator = periods.iterator(); iterator.hasNext();) {
+			Period period = (Period) iterator.next();
+			if(period.getOrders().size()>0){
+				period.calculateTotalCost(cifRate);
+				msj += period.toStringPeriod();	
+			}
+			
+		}
+		System.out.print(msj);
+	}
+
 /////////////////GET and SET/////////////////////////////
 	
 	/**

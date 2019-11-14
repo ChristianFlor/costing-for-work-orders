@@ -371,7 +371,7 @@ public class MainController {
 	}
     @FXML
     void generateAllBill(ActionEvent event) {
-
+    	program.getRegistry().generateAllBill(program.getName());
     }
     /**
 	 * 

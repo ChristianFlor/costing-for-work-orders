@@ -7,6 +7,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -25,7 +26,7 @@ public class Period implements Serializable{
 	/**
 	 * Is a list that contains all orders billed in this period
 	 */
-	private ArrayList<Order> ordersBilled;
+	private List<Order> ordersBilled;
 	
 	
 ////////ATRUBUTES//////////
@@ -59,7 +60,7 @@ public class Period implements Serializable{
 	 */
 	public Period(int periodName) {
 		this.month = periodName;
-		ordersBilled= new ArrayList<Order>();
+		ordersBilled = new ArrayList<Order>();
 	}
 	
 /////////////METHOD////////////
@@ -86,13 +87,29 @@ public class Period implements Serializable{
 		CIFAplicated = cifAplicatedTotal;
 	}
 	
+	public String toStringPeriod(){
+		String msj = "Periodo "+month+"2019\n\n";
+		String line = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
+		msj += String.format("%-100s", line);
+		String format1 = "| %-10s | %-20s | %-20s | %-20s | %-20s | %n";
+		msj += String.format(format1, "Codigo", "tMD", "MOD", "Base Real", "CIF Aplicados");
+		msj += String.format("%-100s", line);
+		for (Iterator<Order> iterator = ordersBilled.iterator(); iterator.hasNext();) {
+			Order order = (Order) iterator.next();
+			msj += String.format(format1, order.getId(), order.getMD(), order.getMOD(), order.getRealBase(), order.getCIFApplied());
+		}
+		msj += String.format("%-100s", line);
+		msj += String.format(format1, "TOTAL", MDTotal, MODTotal, RealBaseTotal, CIFAplicated);
+		msj += String.format("%-100s", line);
+		return msj;
+	}
 	
 /////////////////GET and SET/////////////////////////////
 	
 	/**
 	 * @return the order list
 	 */
-	public ArrayList<Order> getOrders() {
+	public List<Order> getOrders() {
 		return ordersBilled;
 	}
 	
