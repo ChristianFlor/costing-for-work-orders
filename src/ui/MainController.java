@@ -279,6 +279,11 @@ public class MainController {
 	 */
 	public void finishOrder() {
 		LocalDate periodFinal = finishedController.getFechaFinBill().getValue();
+		if(periodFinal==null) {
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setContentText("Debe digitar la fecha de fin de la orden");
+			alert.show();
+		}else {
 		Month pF = periodFinal.getMonth();
 
 		int monthF = pF.getValue();
@@ -293,6 +298,7 @@ public class MainController {
 		tableNOFinished.setContent(listNOFinished);
 		tableFinished.setContent(listIsFinished);
 		tableBilled.setContent(listBilled);
+		}
 	}
 	
 	@FXML
@@ -371,7 +377,11 @@ public class MainController {
 	}
     @FXML
     void generateAllBill(ActionEvent event) {
-    	program.getRegistry().generateAllBill(program.getName());
+    	String name = program.getRegistry().generateAllBill(program.getName());
+    	Alert al = new Alert(Alert.AlertType.INFORMATION);
+		al.setContentText("La informacion se ha guardado en el archivo llamado: "+name);
+		al.show();
+    	
     }
     /**
 	 * 

@@ -89,7 +89,7 @@ public class Period implements Serializable{
 	
 	public String toStringPeriod(){
 		String msj = "Periodo "+month+"2019\n\n";
-		String line = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
+		String line = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
 		msj += String.format("%-100s", line);
 		String format1 = "| %-10s | %-20s | %-20s | %-20s | %-20s | %n";
 		msj += String.format(format1, "Codigo", "tMD", "MOD", "Base Real", "CIF Aplicados");

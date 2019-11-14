@@ -6,8 +6,13 @@
  */
 package model;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -146,9 +151,9 @@ public class Registry implements Serializable{
 		int m = searchOrder(id, ordersNotFinished);
 		if(m!=-1) {
 			Order order = ordersNotFinished.get(m);
-			order.setMD(md);
-			order.setMOD(mod);
-			order.setRealBase(rBase);
+			order.addMD(md);
+			order.addMOD(mod);
+			order.addRealBase(rBase);
 			order.setFinish(dayF, monthF, yearF);
 			ordersFinished.add(order);
 			ordersNotFinished.remove(m);
@@ -221,8 +226,18 @@ public class Registry implements Serializable{
 
 	}
 
-	public void generateAllBill(String comanyName){
-		String msj = comanyName+"\nORDENES FACTURADAS\n";
+
+
+	public String generateAllBill(String comanyName){
+		PrintWriter writer;
+		String name = "";
+		try {
+			File f = new File("./data/Factura_"+(new SimpleDateFormat("yyyy-MM-dd_hh-mm-ss").format(new Date()))+".txt");
+			name = f.getName();
+			writer = new PrintWriter(f);
+
+			String msj = comanyName+"\nORDENES FACTURADAS\n";
+			
 		for (Iterator<Period> iterator = periods.iterator(); iterator.hasNext();) {
 			Period period = (Period) iterator.next();
 			if(period.getOrders().size()>0){
@@ -231,7 +246,14 @@ public class Registry implements Serializable{
 			}
 			
 		}
-		System.out.print(msj);
+		writer.println(msj);
+			writer.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return name;
 	}
 
 /////////////////GET and SET/////////////////////////////
