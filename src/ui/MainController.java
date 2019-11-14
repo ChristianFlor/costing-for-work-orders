@@ -326,7 +326,7 @@ public class MainController {
     @FXML
     void createCompany(ActionEvent event) {
     	try {
-    	if(Double.parseDouble(valueBase.getText()) >0){
+    	if(Double.parseDouble(valueBase.getText()) >0 && Double.parseDouble(cifPresupuestado.getText()) >=0 ){
     		program = new Company(nameCompany.getText(), descripcion.getText(), typeBase.getValue(),Double.parseDouble(valueBase.getText()),Double.parseDouble(cifPresupuestado.getText()));
         	Alert a = new Alert(AlertType.INFORMATION);
     		a.setContentText("La compañia: "+nameCompany.getText()+", ha sido creada correctamente");
@@ -343,7 +343,7 @@ public class MainController {
     		}
    		}else {
    			Alert b = new Alert(AlertType.ERROR);
-   	   		b.setContentText("La base no puede ser negativa o ceros");
+   	   		b.setContentText("Los valores no pueden ser negativos o cero");
    	   		b.show();
    		}
     	
@@ -401,17 +401,21 @@ public class MainController {
 			Order orderNF = new Order(idOrder.getText(), Double.parseDouble(MDOrder.getText()),
 					Double.parseDouble(MODOrder.getText()), Double.parseDouble(CIFOrder.getText()), dayS, monthS,
 					yearS);
-			if (finished) {
+			if (finished && Double.parseDouble(MDOrder.getText())> 0 && Double.parseDouble(MODOrder.getText())>0) {
 				if(Double.parseDouble(CIFOrder.getText()) >0 ) {
 					program.getRegistry().addOrderF(orderF);
 				}else {
 					Alert a = new Alert(AlertType.ERROR);
-					a.setContentText("Digite un numero mayor a 0");
+					a.setContentText("Digite un valor mayor a 0");
 					a.show();
 				}
 				
-			} else {
+			} else if(!finished && Double.parseDouble(MDOrder.getText())> 0 && Double.parseDouble(MODOrder.getText())>0){
 				program.getRegistry().addOrderNF(orderNF);
+			}else {
+				Alert a = new Alert(AlertType.ERROR);
+				a.setContentText("Digite un valor mayor a 0");
+				a.show();
 			}
 
 			listNOFinished = createTableNOFinished();
@@ -427,7 +431,7 @@ public class MainController {
 			a.show();
 		} catch (Exception e) {
 			Alert a = new Alert(AlertType.ERROR);
-			a.setContentText("Cree la compañia");
+			a.setContentText("Digite los valores validos");
 			a.show();
 		}
 		
